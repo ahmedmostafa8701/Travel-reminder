@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Travel reminder</string>
+    <string name="sign_up_layout">sign up layout</string>
+    <string name="profile_img">profile image</string>
+    <string name="already_registered">Already Registered Sign in here</string>
+    <string name="sign_up_button">sign up</string>
+    <string name="new_account_text">New Account</string>
+    <string name="name_enter">Name</string>
+    <string name="user_name_enter">User name</string>
+    <string name="password_enter">Password</string>
+    <string name="retypep_password_enter">Re-tyoer Password</string>
+    <string name="phone_number_enter">Phone Number</string>
+    <string name="upload_profile_pic">Upload Picture</string>
+</resources>
