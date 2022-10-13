@@ -11,4 +11,16 @@
     <string name="retypep_password_enter">Re-tyoer Password</string>
     <string name="phone_number_enter">Phone Number</string>
     <string name="upload_profile_pic">Upload Picture</string>
+    <string name="email">Email</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="get_password">Get Password</string>
+    <string name="todo">TODO</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="or_login_with">or login with</string>
+    <string name="don_t_have_an_account">don\'t have an account?</string>
+    <string name="mynotes">MyNotes</string>
+    <string name="add_note">Add Note</string>
+    <string name="my_trips">My Trips</string>
+
 </resources>
