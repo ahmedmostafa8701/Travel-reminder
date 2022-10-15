@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "869454038347",
+    "project_id": "travelreminder-b45ee",
+    "storage_bucket": "travelreminder-b45ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869454038347:android:f66292ef3fdadf38c514ce",
+        "android_client_info": {
+          "package_name": "com.example.travelreminder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "869454038347-1ugubiho6mo27eijaonurqaesn5t9idr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.travelreminder",
+            "certificate_hash": "5b74b81717f28608262a2b7e7d49b80ad3d6a770"
+          }
+        },
+        {
+          "client_id": "869454038347-rmo59kpttu597rliols9u5n7bmodhql3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs-0dRolqqHygea10Qpu8M9qc2aLnzlls"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "869454038347-rmo59kpttu597rliols9u5n7bmodhql3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

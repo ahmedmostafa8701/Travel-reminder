@@ -25,10 +25,12 @@
             style="@android:style/Widget.Material.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:text="@string/sign_up_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/phone_enter"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/phone_enter" />
 
         <Button
@@ -73,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
-            android:hint="@string/retypep_password_enter"
+            android:hint="@string/retype_password_enter"
             android:inputType="textWebPassword"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="@+id/password_enter"
