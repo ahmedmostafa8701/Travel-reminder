@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddTripActivity">
+
+    <EditText
+        android:id="@+id/from_add_trip"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:hint="@string/source_city"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+    <EditText
+        android:id="@+id/to_add_trip"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="@string/destination_city"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/from_add_trip"
+        app:layout_constraintStart_toStartOf="@+id/from_add_trip"
+        app:layout_constraintTop_toBottomOf="@+id/from_add_trip" />
+
+    <EditText
+        android:id="@+id/trip_name_add_trip"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="@string/trip_name"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/to_add_trip"
+        app:layout_constraintStart_toStartOf="@+id/to_add_trip"
+        app:layout_constraintTop_toBottomOf="@+id/to_add_trip" />
+
+    <EditText
+        android:id="@+id/arrival_date_add_trip"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="@string/date"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="@+id/trip_name_add_trip"
+        app:layout_constraintStart_toStartOf="@+id/trip_name_add_trip"
+        app:layout_constraintTop_toBottomOf="@+id/trip_name_add_trip" />
+
+    <EditText
+        android:id="@+id/arrival_time_add_trip"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="@string/time"
+        android:inputType="time"
+        app:layout_constraintEnd_toEndOf="@+id/arrival_date_add_trip"
+        app:layout_constraintStart_toStartOf="@+id/arrival_date_add_trip"
+        app:layout_constraintTop_toBottomOf="@+id/arrival_date_add_trip" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Trip Type"
+        app:layout_constraintStart_toStartOf="@+id/arrival_time_add_trip"
+        app:layout_constraintTop_toBottomOf="@+id/arrival_time_add_trip" />
+
+    <Spinner
+        android:id="@+id/trip_type_add_trip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/travel_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/add_trip_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/add"
+        app:cornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_trip_return" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/set_trip_return"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/trip_type_add_trip">
+
+        <EditText
+            android:id="@+id/return_date_add_trip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:ems="10"
+            android:hint="@string/date"
+            android:inputType="date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/return_time_add_trip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:ems="10"
+            android:hint="@string/time"
+            android:inputType="time"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/return_date_add_trip"
+            app:layout_constraintStart_toStartOf="@+id/return_date_add_trip"
+            app:layout_constraintTop_toBottomOf="@+id/return_date_add_trip" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

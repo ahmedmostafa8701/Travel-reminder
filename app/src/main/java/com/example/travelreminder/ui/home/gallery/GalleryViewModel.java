@@ -1,4 +1,4 @@
-package com.example.travelreminder.ui.gallery;
+package com.example.travelreminder.ui.home.gallery;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

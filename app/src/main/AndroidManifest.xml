@@ -13,6 +13,13 @@
         android:theme="@style/Theme.TravelReminder"
         tools:targetApi="31">
         <activity
+            android:name=".AddTripActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".forget_password"
             android:exported="false">
             <meta-data

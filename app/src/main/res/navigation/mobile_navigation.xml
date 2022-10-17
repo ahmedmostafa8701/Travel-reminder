@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/history"
-        android:name="com.example.travelreminder.ui.gallery.GalleryFragment"
+        android:name="com.example.travelreminder.ui.home.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
 

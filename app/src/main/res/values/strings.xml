@@ -45,4 +45,9 @@
     <string name="trip_details">Trip Details</string>
     <string name="start_trip_text">start</string>
     <string name="sign_out">Sign Out</string>
+    <string name="source_city">Source city</string>
+    <string name="add">add</string>
+    <string name="destination_city">Destination City</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
 </resources>
