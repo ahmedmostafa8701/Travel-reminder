@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/upcoming"
+            android:icon="@android:drawable/ic_menu_upload"
+            android:title="@string/up_coming" />
+        <item
+            android:id="@+id/history"
+            android:icon="@android:drawable/ic_menu_recent_history"
+            android:title="@string/history" />
+        <item
+            android:id="@+id/history_map"
+            android:icon="@android:drawable/ic_dialog_map"
+            android:title="@string/history_map" />
+    </group>
+    <item
+        android:title="Other">
+    <menu>
+        <item
+            android:title= "@string/sign_out"
+            android:icon="@android:drawable/ic_lock_power_off"/>
+    </menu>
+    </item>
+</menu>

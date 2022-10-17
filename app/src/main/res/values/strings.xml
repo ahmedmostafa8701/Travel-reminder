@@ -8,7 +8,7 @@
     <string name="name_enter">Name</string>
     <string name="user_name_enter">User name</string>
     <string name="password_enter">Password</string>
-    <string name="retypep_password_enter">Re-tyoer Password</string>
+    <string name="retype_password_enter">Re-type Password</string>
     <string name="phone_number_enter">Phone Number</string>
     <string name="upload_profile_pic">Upload Picture</string>
     <string name="email">Email</string>
@@ -22,5 +22,27 @@
     <string name="mynotes">MyNotes</string>
     <string name="add_note">Add Note</string>
     <string name="my_trips">My Trips</string>
-
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">User name</string>
+    <string name="nav_header_subtitle">user@mail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="up_coming">Upcoming</string>
+    <string name="trip_name">Trip</string>
+    <string name="trip_date">0 / 0 / 0</string>
+    <string name="trip_time">00:00</string>
+    <string name="history">History</string>
+    <string name="history_map">History Map</string>
+    <string name="title_activity_trips">TripsActivity</string>
+    <string name="city_from">First</string>
+    <string name="city_to">Second</string>
+    <string name="trip_status">UpComing</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="trip_details">Trip Details</string>
+    <string name="start_trip_text">start</string>
+    <string name="sign_out">Sign Out</string>
 </resources>
