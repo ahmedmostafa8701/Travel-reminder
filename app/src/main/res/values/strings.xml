@@ -34,4 +34,5 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="trip_details">Trip Details</string>
     <string name="start_trip_text">start</string>
+    <string name="sign_out">Sign Out</string>
 </resources>

@@ -3,6 +3,7 @@ package com.example.travelreminder;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.protobuf.Any;
