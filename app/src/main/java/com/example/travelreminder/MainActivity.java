@@ -4,12 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.protobuf.Any;
-
-import java.util.HashMap;
 import android.view.View;
 import android.widget.Button;
 
@@ -23,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, login_user.class));
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
     }
