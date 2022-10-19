@@ -1,6 +1,7 @@
+package com.example.travelreminder.Auth;
+
 import androidx.annotation.NonNull;
 
-import com.example.travelreminder.SignUp;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -9,14 +10,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 class SignUpWithEmailAndPassword implements SignUp, OnCompleteListener<AuthResult> {
     FirebaseAuth auth;
-    private SignUpWithEmailAndPassword instance;
-    public boolean isEmailSent;
+    private static SignUpWithEmailAndPassword instance;
     private SignUpWithEmailAndPassword(){
         instance = new SignUpWithEmailAndPassword();
         auth = FirebaseAuth.getInstance();
-        isEmailSent = false;
     }
-    public SignUpWithEmailAndPassword getInstance() {
+    public static SignUpWithEmailAndPassword getInstance() {
         return instance;
     }
 
