@@ -1,5 +1,5 @@
 package com.example.travelreminder.Auth;
 
-interface SignIn {
+public interface SignIn {
   public void login(String email, String password);
 }

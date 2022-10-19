@@ -8,29 +8,28 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-class SignUpWithEmailAndPassword implements SignUp, OnCompleteListener<AuthResult> {
-    FirebaseAuth auth;
+public class SignUpWithEmailAndPassword implements SignUp, OnCompleteListener<AuthResult> {
     private static SignUpWithEmailAndPassword instance;
     private SignUpWithEmailAndPassword(){
         instance = new SignUpWithEmailAndPassword();
-        auth = FirebaseAuth.getInstance();
     }
     public static SignUpWithEmailAndPassword getInstance() {
+        if(instance == null){
+            instance = new SignUpWithEmailAndPassword();
+        }
         return instance;
     }
 
     @Override
     public void register(String email, String password) {
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this::onComplete);
+        FirebaseAuth.getInstance()
+                .createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this::onComplete);
     }
 
     @Override
     public void onComplete(@NonNull Task<AuthResult> task) {
-        if(task.isSuccessful()){
-            FirebaseUser user = auth.getCurrentUser();
-        }
-        else{
-
-        }
+        if(task.isSuccessful()){}
+        else{}
     }
 }
