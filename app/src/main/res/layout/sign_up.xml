@@ -46,13 +46,13 @@
             app:layout_constraintTop_toBottomOf="@+id/sign_up_button" />
 
         <EditText
-            android:id="@+id/name_edit_text"
+            android:id="@+id/Email_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
-            android:hint="@string/name_enter"
-            android:inputType="text"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -115,8 +115,8 @@
             android:hint="@string/user_name_enter"
             android:inputType="text"
             android:minHeight="48dp"
-            app:layout_constraintStart_toStartOf="@+id/name_edit_text"
-            app:layout_constraintTop_toBottomOf="@+id/name_edit_text" />
+            app:layout_constraintStart_toStartOf="@+id/Email_text"
+            app:layout_constraintTop_toBottomOf="@+id/Email_text" />
 
         <ImageView
             android:id="@+id/imageView"
