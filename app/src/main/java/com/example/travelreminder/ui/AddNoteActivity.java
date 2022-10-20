@@ -1,14 +1,16 @@
-package com.example.travelreminder;
+package com.example.travelreminder.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ForgetPasswordActivity extends AppCompatActivity {
+import com.example.travelreminder.R;
+
+public class AddNoteActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forget_password);
+        setContentView(R.layout.activity_adding_notes);
     }
 }

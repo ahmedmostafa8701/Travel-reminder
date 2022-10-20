@@ -1,8 +1,10 @@
-package com.example.travelreminder;
+package com.example.travelreminder.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.travelreminder.R;
 
 public class AddTripActivity extends AppCompatActivity {
     @Override

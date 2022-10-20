@@ -55,16 +55,6 @@ public class RegisterationActivity extends AppCompatActivity {
         register();
         alreadyReg();
     }
-
-    private void alreadyReg(){
-        mAlreadyReg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-    }
-
     private void initializeComponent() {
         mImgUplode = findViewById(R.id.upload_image_register);
         mAlreadyReg = findViewById(R.id.already_register_button);
@@ -76,22 +66,22 @@ public class RegisterationActivity extends AppCompatActivity {
         mPasswordConfirmationTxt = findViewById(R.id.re_password_enter);
     }
 
-    private void getRegistrationData() {
-        mPhone = mPhoneTxt.getText().toString().trim();
-        mUser = mUserNameTxt.getText().toString().trim();
-        mEmail = mEmailTxt.getText().toString().trim();
-        mPassword = mPasswordTxt.getText().toString().trim();
-        mPasswordConfirm = mPasswordConfirmationTxt.getText().toString().trim();
+    private void alreadyReg(){
+        mAlreadyReg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
-
-    private void uploadImg(String imageName) {
-        StorageReference imagesRef = mStorageReference.child("images/" + imageName);
-        imagesRef.putFile(mSelectedImageUri).addOnFailureListener(e ->
-                Toast.makeText(RegisterationActivity.this, "failed to upload photo", Toast.LENGTH_LONG).show());
-    }
-
-    private boolean checkValidData(){
-        return mUser.isEmpty() || mEmail.isEmpty() || mPassword.isEmpty() || mPasswordConfirm.isEmpty() || mPhone.isEmpty();
+    //prepare intent to open gallery
+    private void imageChooser() {
+        mImgUplode.setOnClickListener(v -> {
+            Intent i = new Intent();
+            i.setType("image/*");
+            i.setAction(Intent.ACTION_GET_CONTENT);
+            launchSomeActivity.launch(i);
+        });
     }
     private void register() {
         mSignUpBtn.setOnClickListener(v -> {
@@ -132,20 +122,27 @@ public class RegisterationActivity extends AppCompatActivity {
         });
     }
 
+    private void getRegistrationData() {
+        mPhone = mPhoneTxt.getText().toString().trim();
+        mUser = mUserNameTxt.getText().toString().trim();
+        mEmail = mEmailTxt.getText().toString().trim();
+        mPassword = mPasswordTxt.getText().toString().trim();
+        mPasswordConfirm = mPasswordConfirmationTxt.getText().toString().trim();
+    }
+
+    private void uploadImg(String imageName) {
+        StorageReference imagesRef = mStorageReference.child("images/" + imageName);
+        imagesRef.putFile(mSelectedImageUri).addOnFailureListener(e ->
+                Toast.makeText(RegisterationActivity.this, "failed to upload photo", Toast.LENGTH_LONG).show());
+    }
+
+    private boolean checkValidData(){
+        return mUser.isEmpty() || mEmail.isEmpty() || mPassword.isEmpty() || mPasswordConfirm.isEmpty() || mPhone.isEmpty();
+    }
     private void setUserName(String UserId) {
         db.child("users");
         db.child(UserId).child("username").setValue(mUser).addOnFailureListener(e ->
                 Toast.makeText(RegisterationActivity.this, "failed to set username", Toast.LENGTH_LONG).show());
-    }
-
-    //prepare intent to open gallery
-    private void imageChooser() {
-        mImgUplode.setOnClickListener(v -> {
-            Intent i = new Intent();
-            i.setType("image/*");
-            i.setAction(Intent.ACTION_GET_CONTENT);
-            launchSomeActivity.launch(i);
-        });
     }
 
     //take photo from gallery
