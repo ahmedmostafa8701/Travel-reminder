@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class SignUpWithEmailAndPassword implements SignUp, OnCompleteListener<AuthResult> {
     private static SignUpWithEmailAndPassword instance;
     private SignUpWithEmailAndPassword(){
-        instance = new SignUpWithEmailAndPassword();
+
     }
     public static SignUpWithEmailAndPassword getInstance() {
         if(instance == null){

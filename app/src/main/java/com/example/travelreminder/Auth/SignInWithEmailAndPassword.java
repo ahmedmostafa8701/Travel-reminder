@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class SignInWithEmailAndPassword implements SignIn, OnCompleteListener<AuthResult> {
     private static SignInWithEmailAndPassword instance;
     private SignInWithEmailAndPassword(){
-        instance = new SignInWithEmailAndPassword();
+
     }
     public static SignInWithEmailAndPassword getInstance() {
         if(instance == null){
