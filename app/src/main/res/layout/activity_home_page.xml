@@ -7,17 +7,22 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.HomePageActivity"
-        android:orientation="vertical">
+        tools:context=".ui.HomePageActivity">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#FF9800" />
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.TravelReminder.AppBarOverlay">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/drawerLayout"
@@ -33,8 +38,8 @@
                     android:id="@+id/imageView7"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:padding="10dp"
-                    android:background="@drawable/plane" />
+                    android:background="@drawable/travel_image"
+                    android:contentDescription="@string/temp_image" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/item"
@@ -44,7 +49,7 @@
             </LinearLayout>
 
             <com.google.android.material.navigation.NavigationView
-                android:id="@+id/navogation_view"
+                android:id="@+id/navigation_view"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
@@ -52,5 +57,16 @@
                 app:headerLayout="@layout/nav_header"
                 app:menu="@menu/trip_option" />
         </androidx.drawerlayout.widget.DrawerLayout>
-    </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="16dp"
+            app:srcCompat="@android:drawable/ic_input_add"
+            android:contentDescription="@string/add_note" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

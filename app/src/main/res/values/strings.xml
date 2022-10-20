@@ -36,8 +36,8 @@
     <string name="history">History</string>
     <string name="history_map">History Map</string>
     <string name="title_activity_trips">TripsActivity</string>
-    <string name="city_from">First</string>
-    <string name="city_to">Second</string>
+    <string name="city_from">From</string>
+    <string name="city_to">To</string>
     <string name="trip_status">UpComing</string>
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
@@ -50,4 +50,7 @@
     <string name="destination_city">Destination City</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
+    <string name="temp_image">temp_image</string>
+    <string name="open">Open Drawer</string>
+    <string name="close">Close Drawer</string>
 </resources>

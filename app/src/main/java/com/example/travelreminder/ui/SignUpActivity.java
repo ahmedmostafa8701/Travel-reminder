@@ -28,7 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
-    uploadImage(){
+    void uploadImage(){
 
     }
 }

@@ -14,7 +14,7 @@ public class SignInWithEmailAndPassword implements SignIn, OnCompleteListener<Au
     }
     public static SignInWithEmailAndPassword getInstance() {
         if(instance == null){
-            instance = new SignInWithEmailAndPassword;
+            instance = new SignInWithEmailAndPassword();
         }
         return instance;
     }

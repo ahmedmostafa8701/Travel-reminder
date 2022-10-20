@@ -9,9 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="4dp"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true">
+        app:cardCornerRadius="50dp"
+        app:cardElevation="16dp"
+        app:cardUseCompatPadding="true"
+        android:padding="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,84 +23,78 @@
                 android:id="@+id/imageView4"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_weight="3"
                 android:background="@drawable/road"
                 android:contentDescription="@string/trip_details" />
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="4"
-                android:orientation="vertical"
                 android:visibility="visible">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/trip_status_text"
+                    style="@style/trip_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/trip_status"
+                    app:layout_constraintBottom_toBottomOf="@+id/city_to_text"
+                    app:layout_constraintEnd_toEndOf="@+id/trip_time_text"
+                    app:layout_constraintTop_toTopOf="@+id/trip_date" />
 
-                    <TextView
-                        android:id="@+id/trip_status_text"
-                        style="@style/trip_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/trip_status"
-                        app:layout_constraintBottom_toBottomOf="@+id/city_to_text"
-                        app:layout_constraintEnd_toEndOf="@+id/trip_time_text"
-                        app:layout_constraintTop_toTopOf="@+id/trip_date" />
+                <TextView
+                    android:id="@+id/trip_time_text"
+                    style="@style/trip_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="52dp"
+                    android:text="@string/trip_time"
+                    app:layout_constraintBottom_toBottomOf="@+id/trip_date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/trip_date" />
 
-                    <TextView
-                        android:id="@+id/trip_time_text"
-                        style="@style/trip_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="52dp"
-                        android:text="@string/trip_time"
-                        app:layout_constraintBottom_toBottomOf="@+id/trip_date"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/trip_date" />
+                <TextView
+                    android:id="@+id/trip_name_text"
+                    style="@style/trip_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/trip_name"
+                    app:layout_constraintBottom_toTopOf="@+id/trip_status_text"
+                    app:layout_constraintStart_toStartOf="@+id/trip_date"
+                    app:layout_constraintTop_toBottomOf="@+id/trip_date" />
 
-                    <TextView
-                        android:id="@+id/trip_name_text"
-                        style="@style/trip_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="@string/trip_name"
-                        app:layout_constraintStart_toStartOf="@+id/trip_date"
-                        app:layout_constraintTop_toBottomOf="@+id/trip_date" />
+                <TextView
+                    android:id="@+id/city_from_text"
+                    style="@style/trip_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/city_from"
+                    app:layout_constraintBottom_toTopOf="@+id/city_to_text"
+                    app:layout_constraintStart_toStartOf="@+id/trip_date"
+                    app:layout_constraintTop_toBottomOf="@+id/trip_status_text" />
 
-                    <TextView
-                        android:id="@+id/city_from_text"
-                        style="@style/trip_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="@string/city_from"
-                        app:layout_constraintBottom_toTopOf="@+id/city_to_text"
-                        app:layout_constraintStart_toStartOf="@+id/trip_date" />
+                <TextView
+                    android:id="@+id/trip_date"
+                    style="@style/trip_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/trip_date"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/trip_date"
-                        style="@style/trip_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="52dp"
-                        android:layout_marginTop="40dp"
-                        android:text="@string/trip_date"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/city_to_text"
-                        style="@style/trip_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="40dp"
-                        android:text="@string/city_to"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/trip_date" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/city_to_text"
+                    style="@style/trip_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="40dp"
+                    android:text="@string/city_to"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/trip_date" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
                 android:id="@+id/button5"
