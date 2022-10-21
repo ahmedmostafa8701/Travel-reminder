@@ -47,9 +47,11 @@ public class SignUpActivity extends AppCompatActivity implements UpdateUI {
     private void initialize() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up);
         binding.getRoot().findViewById(R.id.sign_up_button).setOnClickListener((view)->register());
-        binding.alreadyRegisterButton.setOnClickListener((view)->startActivity(new Intent(SignUpActivity.this, LoginActivity.class)));
+        binding.alreadyRegisterButton.setOnClickListener((view)-> {
+            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+            finish();
+        });
         binding.uploadImageRegister.setOnClickListener((view)->uploadImage());
-        binding.alreadyRegisterButton.setOnClickListener((view)->startActivity(new Intent(SignUpActivity.this, LoginActivity.class)));
     }
     private void register() {
         userName = binding.userNameEnter.getText().toString();
@@ -57,7 +59,7 @@ public class SignUpActivity extends AppCompatActivity implements UpdateUI {
         email = binding.emailEnterReg.getText().toString();
         password = binding.passwordEnter.getText().toString();
         rePassword = binding.rePasswordEnter.getText().toString();
-        if(true){
+        if(validate()){
             syncAuth = new SyncAuth();
             syncAuth.setUpdateUI(this);
             signUp = new SignUpWithEmailAndPassword(syncAuth);
@@ -85,6 +87,7 @@ public class SignUpActivity extends AppCompatActivity implements UpdateUI {
             FirebaseManager.getInstance().addUser(userName, image, phone);
 //            syncAuth.sync();
             startActivity(new Intent(SignUpActivity.this, HomePageActivity.class));
+            finish();
         }
     }
     private void uploadImage() {

@@ -32,7 +32,10 @@ public class LoginActivity extends AppCompatActivity implements UpdateUI {
     private void intialize() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login_user);
         binding.loginBtn.setOnClickListener((view)->logIn());
-        binding.registerBtn.setOnClickListener((view)->startActivity(new Intent(LoginActivity.this, SignUpActivity.class)));
+        binding.registerBtn.setOnClickListener((view)-> {
+            startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+            finish();
+        });
     }
 
     private void validateUser() {
@@ -51,12 +54,6 @@ public class LoginActivity extends AppCompatActivity implements UpdateUI {
         singIn = new SignInWithEmailAndPassword(syncAuth);
         singIn.login(email, password);
     }
-    @Override
-    public void updateUI(FirebaseUser user) {
-        if(user != null){
-            startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
-        }
-    }
     private boolean validateData() {
         email = binding.emailInput.getText().toString();
         password = binding.passwordInput.getText().toString();
@@ -67,5 +64,12 @@ public class LoginActivity extends AppCompatActivity implements UpdateUI {
             return true;
         }
         return false;
+    }
+    @Override
+    public void updateUI(FirebaseUser user) {
+        if(user != null){
+            startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
+            finish();
+        }
     }
 }

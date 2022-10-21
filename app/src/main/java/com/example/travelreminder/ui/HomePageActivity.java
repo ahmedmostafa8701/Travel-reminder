@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,7 +39,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     private void validateUser() {
         user = FirebaseAuth.getInstance().getCurrentUser();
         if(user == null){
-            startActivity(new Intent(HomePageActivity.this, SignUpActivity.class));
+            startActivity(new Intent(HomePageActivity.this, LoginActivity.class));
         }
         if(FirebaseManager.getInstance().getReference() == null){
 /*            SyncAuth syncAuth = new SyncAuth();
