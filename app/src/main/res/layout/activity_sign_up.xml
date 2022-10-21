@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,7 +10,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="@string/sign_up_layout">
+        android:contentDescription="@string/sign_up_layout"
+        tools:context=".ui.SignUpActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,13 +30,13 @@
 
             <Button
                 android:id="@+id/sign_up_button"
-                style="@android:style/Widget.Material.Button.Colored"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/sign_up_button"
+                app:cornerRadius="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/phone_enter" />
@@ -52,12 +54,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/sign_up_button" />
 
             <EditText
-                android:id="@+id/name_edit_text"
+                android:id="@+id/email_enter_reg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
-                android:hint="@string/name_enter"
+                android:hint="@string/email"
                 android:inputType="text"
                 android:minHeight="48dp"
                 app:layout_constraintStart_toStartOf="@+id/textView"
@@ -121,14 +123,14 @@
                 android:hint="@string/user_name_enter"
                 android:inputType="text"
                 android:minHeight="48dp"
-                app:layout_constraintStart_toStartOf="@+id/name_edit_text"
-                app:layout_constraintTop_toBottomOf="@+id/name_edit_text" />
+                app:layout_constraintStart_toStartOf="@+id/email_enter_reg"
+                app:layout_constraintTop_toBottomOf="@+id/email_enter_reg" />
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
-                android:background="@drawable/plane"
+                android:background="@drawable/travel_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

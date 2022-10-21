@@ -21,6 +21,7 @@
         android:title="Other">
         <menu>
             <item
+                android:id="@+id/sign_out"
                 android:title= "@string/sign_out"
                 android:icon="@android:drawable/ic_lock_power_off"/>
         </menu>

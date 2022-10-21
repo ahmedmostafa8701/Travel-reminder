@@ -53,4 +53,5 @@
     <string name="temp_image">temp_image</string>
     <string name="open">Open Drawer</string>
     <string name="close">Close Drawer</string>
+    <string name="trip_type">Trip Type</string>
 </resources>

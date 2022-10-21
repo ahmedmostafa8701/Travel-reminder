@@ -2,16 +2,26 @@ package com.example.travelreminder.pojo;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
-class Trip {
+public class Trip {
+   private String key;
    private String name;
-   private LocalDate date;
-   private LocalTime time;
+   private String date;
+   private String time;
    private String cityFrom;
    private String cityTo;
    private Status status;
-   private List<String> notes;
+
+   public Trip(String name, String date, String time, String cityFrom, String cityTo, Status status) {
+      this.name = name;
+      this.date = date;
+      this.time = time;
+      this.cityFrom = cityFrom;
+      this.cityTo = cityTo;
+      this.status = status;
+   }
 
    public String getName() {
       return name;
@@ -21,19 +31,19 @@ class Trip {
       this.name = name;
    }
 
-   public LocalDate getDate() {
+   public String getDate() {
       return date;
    }
 
-   public void setDate(LocalDate date) {
+   public void setDate(String date) {
       this.date = date;
    }
 
-   public LocalTime getTime() {
+   public String getTime() {
       return time;
    }
 
-   public void setTime(LocalTime time) {
+   public void setTime(String time) {
       this.time = time;
    }
 
@@ -61,11 +71,11 @@ class Trip {
       this.status = status;
    }
 
-   public List<String> getNotes() {
-      return notes;
+   public String getKey() {
+      return key;
    }
 
-   public void setNotes(List<String> notes) {
-      this.notes = notes;
+   public void setKey(String key) {
+      this.key = key;
    }
 }

@@ -1,5 +1,5 @@
 package com.example.travelreminder.pojo;
 
-enum Status {
+public enum Status {
   Upcoming, Done, Cancel;
 }

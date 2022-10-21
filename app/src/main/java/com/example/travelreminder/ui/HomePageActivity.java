@@ -7,23 +7,26 @@ import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.travelreminder.Auth.SyncAuth;
 import com.example.travelreminder.R;
 import com.example.travelreminder.databinding.ActivityHomePageBinding;
-import com.example.travelreminder.pojo.UserModel;
-import com.google.android.gms.auth.api.signin.SignInAccount;
+import com.example.travelreminder.pojo.FirebaseManager;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.TwitterAuthCredential;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     ActivityHomePageBinding binding;
     private View header;
-    private UserModel userModel;
+    FirebaseUser user;
+    private FirebaseManager firebaseManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +38,13 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     }
 
     private void validateUser() {
-        userModel = UserModel.getInstance();
-        if(userModel == null){
-            startActivity(new Intent(HomePageActivity.this, LoginActivity.class));
-            finish();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user == null){
+            startActivity(new Intent(HomePageActivity.this, SignUpActivity.class));
+        }
+        if(FirebaseManager.getInstance().getReference() == null){
+/*            SyncAuth syncAuth = new SyncAuth();
+            syncAuth.sync();*/
         }
     }
 
@@ -49,11 +55,12 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         actionBarDrawerToggle.syncState();
         header = binding.navigationView.getHeaderView(0);
         TextView userNameTxt = header.findViewById(R.id.user_name_header);
-        userNameTxt.setText(userModel.getUserName());
+        firebaseManager = FirebaseManager.getInstance();
+        userNameTxt.setText(firebaseManager.getUserName());
         TextView email = header.findViewById(R.id.email_header);
-        email.setText(userModel.getEmail());
+        email.setText(firebaseManager.getEmail());
         ImageView imageView = header.findViewById(R.id.image_header);
-        imageView.setImageURI(userModel.getImage());
+        imageView.setImageDrawable(firebaseManager.getProfileImage());
         binding.navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -61,7 +68,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.upcoming:
-
+                Toast.makeText(this, "Upcoming", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.history:
 
@@ -69,8 +76,9 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
             case R.id.history_map:
 
                 break;
-            case R.id.sign_up_button:
-
+            case R.id.sign_out:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(this, LoginActivity.class));
                 break;
         }
         return true;
@@ -84,6 +92,6 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     }
 
     private void addTrip() {
-
+        startActivity(new Intent(this, AddTripActivity.class));
     }
 }
