@@ -58,7 +58,7 @@ public class SignUpActivity extends AppCompatActivity implements UpdateUI {
         email = binding.emailEnterReg.getText().toString();
         password = binding.passwordEnter.getText().toString();
         rePassword = binding.rePasswordEnter.getText().toString();
-        if(validate()){
+        if(true){
             syncAuth = new SyncAuth();
             syncAuth.setUpdateUI(this);
             signUp = new SignUpWithEmailAndPassword(syncAuth);
@@ -66,14 +66,6 @@ public class SignUpActivity extends AppCompatActivity implements UpdateUI {
         }
         else{
             Toast.makeText(this, "please fill all fields with valid data", Toast.LENGTH_SHORT).show();
-        }
-    }
-    @Override
-    public void updateUI(FirebaseUser user) {
-        if(user != null){
-            FirebaseManager.getInstance().addUser(userName, image, phone);
-//            syncAuth.sync();
-            startActivity(new Intent(SignUpActivity.this, HomePageActivity.class));
         }
     }
     private boolean validate() {
@@ -87,6 +79,14 @@ public class SignUpActivity extends AppCompatActivity implements UpdateUI {
             return true;
         }
         return false;
+    }
+    @Override
+    public void updateUI(FirebaseUser user) {
+        if(user != null){
+            FirebaseManager.getInstance().addUser(userName, image, phone);
+//            syncAuth.sync();
+            startActivity(new Intent(SignUpActivity.this, HomePageActivity.class));
+        }
     }
     private void uploadImage() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);

@@ -34,19 +34,17 @@ public class FirebaseManager {
         return reference;
     }
     public void addUser(String userName, Bitmap image, String phone){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        Map<String, Object> map = new HashMap<>();
-        map.put(userNameCollection, userName);
-        map.put(imageCollection, image);
-        map.put(phoneCollection, phone);
-        map.put(tripCollection, null);
-        database.getReference(FirebaseManager.dataCollection).child(FirebaseAuth.getInstance().getCurrentUser().getEmail()).setValue("hello");
+
     }
     public void addTrip(Trip trip){
-        String key = reference.push().getKey();
-        trip.setKey(key);
-        reference.child(key).setValue(trip);
     }
+    public void editTrip(String key, Trip trip){
+
+    }
+    public void addNoteToTrip(String key, Note note){
+
+    }
+
     public String getUserName(){
         return "user";
     }
