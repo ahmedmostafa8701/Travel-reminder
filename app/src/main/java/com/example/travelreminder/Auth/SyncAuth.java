@@ -2,7 +2,7 @@ package com.example.travelreminder.Auth;
 
 import androidx.annotation.NonNull;
 
-import com.example.travelreminder.pojo.FirebaseManager;
+import com.example.travelreminder.FirebaseManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;

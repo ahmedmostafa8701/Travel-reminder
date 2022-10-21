@@ -1,15 +1,12 @@
-package com.example.travelreminder.pojo;
+package com.example.travelreminder;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
+import com.example.travelreminder.pojo.Note;
+import com.example.travelreminder.pojo.Trip;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class FirebaseManager {
     private DatabaseReference reference;
@@ -37,6 +34,7 @@ public class FirebaseManager {
 
     }
     public void addTrip(Trip trip){
+
     }
     public void editTrip(String key, Trip trip){
 
@@ -44,7 +42,6 @@ public class FirebaseManager {
     public void addNoteToTrip(String key, Note note){
 
     }
-
     public String getUserName(){
         return "user";
     }

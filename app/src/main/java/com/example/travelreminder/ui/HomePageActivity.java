@@ -13,14 +13,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.travelreminder.Auth.SyncAuth;
 import com.example.travelreminder.R;
 import com.example.travelreminder.databinding.ActivityHomePageBinding;
-import com.example.travelreminder.pojo.FirebaseManager;
+import com.example.travelreminder.FirebaseManager;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.squareup.picasso.Picasso;
 
 public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     ActivityHomePageBinding binding;

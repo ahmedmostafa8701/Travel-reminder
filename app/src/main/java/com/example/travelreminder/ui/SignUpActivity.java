@@ -5,7 +5,6 @@ import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.Toast;
@@ -16,7 +15,7 @@ import com.example.travelreminder.Auth.SyncAuth;
 import com.example.travelreminder.Auth.UpdateUI;
 import com.example.travelreminder.R;
 import com.example.travelreminder.databinding.ActivitySignUpBinding;
-import com.example.travelreminder.pojo.FirebaseManager;
+import com.example.travelreminder.FirebaseManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.example.travelreminder.R;
 import com.example.travelreminder.databinding.ActivityAddTripBinding;
-import com.example.travelreminder.pojo.FirebaseManager;
+import com.example.travelreminder.FirebaseManager;
 import com.example.travelreminder.pojo.Status;
 import com.example.travelreminder.pojo.Trip;
 
