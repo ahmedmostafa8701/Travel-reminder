@@ -84,8 +84,8 @@ public class SignUpActivity extends AppCompatActivity implements UpdateUI {
     @Override
     public void updateUI(FirebaseUser user) {
         if(user != null){
-            FirebaseManager.getInstance().addUser(userName, image, phone);
-//            syncAuth.sync();
+            syncAuth.sync(user);
+            FirebaseManager.getInstance().addUser(user, userName, image, phone);
             startActivity(new Intent(SignUpActivity.this, HomePageActivity.class));
             finish();
         }

@@ -4,8 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.hardware.lights.LightState;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -14,18 +17,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.travelreminder.Auth.SyncAuth;
 import com.example.travelreminder.R;
+import com.example.travelreminder.TripAdapter;
 import com.example.travelreminder.databinding.ActivityHomePageBinding;
 import com.example.travelreminder.FirebaseManager;
+import com.example.travelreminder.pojo.Trip;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.List;
 
 public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     ActivityHomePageBinding binding;
     private View header;
     FirebaseUser user;
     private FirebaseManager firebaseManager;
+    List<Trip> trips;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +42,24 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home_page);
         validateUser();
         navIt();
+        showData();
         binding.fab.setOnClickListener(this);
+    }
+
+    private void showData() {
+        binding.items.setLayoutManager(new LinearLayoutManager(this));
+        binding.items.setAdapter(new TripAdapter(this, trips));
     }
 
     private void validateUser() {
         user = FirebaseAuth.getInstance().getCurrentUser();
         if(user == null){
             startActivity(new Intent(HomePageActivity.this, LoginActivity.class));
+            finish();
         }
-        if(FirebaseManager.getInstance().getReference() == null){
-/*            SyncAuth syncAuth = new SyncAuth();
-            syncAuth.sync();*/
+        else if(FirebaseManager.getInstance().getReference() == null){
+            SyncAuth syncAuth = new SyncAuth();
+            syncAuth.sync(user);
         }
     }
 
@@ -59,7 +75,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         TextView email = header.findViewById(R.id.email_header);
         email.setText(firebaseManager.getEmail());
         ImageView imageView = header.findViewById(R.id.image_header);
-        imageView.setImageDrawable(firebaseManager.getProfileImage());
+        imageView.setImageBitmap(firebaseManager.getProfileImage());
         binding.navigationView.setNavigationItemSelectedListener(this);
     }
 
