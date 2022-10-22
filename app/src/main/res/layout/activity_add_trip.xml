@@ -64,7 +64,11 @@
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="@+id/trip_name_add_trip"
             app:layout_constraintStart_toStartOf="@+id/trip_name_add_trip"
-            app:layout_constraintTop_toBottomOf="@+id/trip_name_add_trip" />
+            app:layout_constraintTop_toBottomOf="@+id/trip_name_add_trip"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
 
         <EditText
             android:id="@+id/arrival_time_add_trip"
@@ -77,7 +81,11 @@
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="@+id/arrival_date_add_trip"
             app:layout_constraintStart_toStartOf="@+id/arrival_date_add_trip"
-            app:layout_constraintTop_toBottomOf="@+id/arrival_date_add_trip" />
+            app:layout_constraintTop_toBottomOf="@+id/arrival_date_add_trip"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
 
         <TextView
             android:id="@+id/textView6"
@@ -139,7 +147,11 @@
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"/>
 
             <EditText
                 android:id="@+id/return_time_add_trip"
@@ -154,7 +166,11 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/return_date_add_trip"
                 app:layout_constraintStart_toStartOf="@+id/return_date_add_trip"
-                app:layout_constraintTop_toBottomOf="@+id/return_date_add_trip" />
+                app:layout_constraintTop_toBottomOf="@+id/return_date_add_trip"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
