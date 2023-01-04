@@ -10,7 +10,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.HomePageActivity">
+        tools:context=".ui.home.HomePageActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="60dp" />
+                android:layout_height="40dp" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -42,7 +42,7 @@
                     android:contentDescription="@string/temp_image" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/item"
+                    android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:listitem="@layout/trip_item" />

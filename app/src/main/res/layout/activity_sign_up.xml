@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/sign_up_layout"
-        tools:context=".ui.SignUpActivity">
+        tools:context=".ui.auth.SignUpActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -129,8 +129,8 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="0dp"
-                android:layout_height="200dp"
-                android:background="@drawable/travel_image"
+                android:layout_height="100dp"
+                android:background="@drawable/plane"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

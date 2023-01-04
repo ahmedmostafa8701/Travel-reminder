@@ -7,9 +7,9 @@ import android.os.Bundle;
 
 import com.example.travelreminder.R;
 import com.example.travelreminder.databinding.ActivityAddTripBinding;
-import com.example.travelreminder.FirebaseManager;
 import com.example.travelreminder.pojo.Status;
 import com.example.travelreminder.pojo.Trip;
+import com.example.travelreminder.pojo.datalayer.remote.FirebaseDataLayer;
 
 public class AddTripActivity extends AppCompatActivity {
     ActivityAddTripBinding binding;
@@ -28,7 +28,8 @@ public class AddTripActivity extends AppCompatActivity {
         Trip trip = new Trip(binding.tripNameAddTrip.getText().toString(),
                 binding.arrivalDateAddTrip.getText().toString(), binding.arrivalTimeAddTrip.getText().toString(),
                 binding.fromAddTrip.getText().toString(), binding.toAddTrip.getText().toString(),
-                Status.Upcoming);
-        FirebaseManager.getInstance().addTrip(trip);
+                Status.Upcoming.toString());
+        new FirebaseDataLayer().addTrip(trip);
+        finish();
     }
 }

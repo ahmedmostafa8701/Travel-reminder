@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:elevation="4dp"
         app:cardCornerRadius="50dp"
         app:cardElevation="16dp"
@@ -20,18 +20,17 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/trip_image"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_height="100dp"
                 android:background="@drawable/road"
                 android:contentDescription="@string/trip_details" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:visibility="visible">
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:id="@+id/hidden">
 
                 <TextView
                     android:id="@+id/trip_status_text"
@@ -39,19 +38,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/trip_status"
-                    app:layout_constraintBottom_toBottomOf="@+id/city_to_text"
+                    app:layout_constraintBottom_toBottomOf="@+id/trip_name_text"
                     app:layout_constraintEnd_toEndOf="@+id/trip_time_text"
-                    app:layout_constraintTop_toTopOf="@+id/trip_date" />
+                    app:layout_constraintStart_toStartOf="@+id/trip_time_text"
+                    app:layout_constraintTop_toTopOf="@+id/trip_name_text" />
 
                 <TextView
                     android:id="@+id/trip_time_text"
                     style="@style/trip_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="52dp"
                     android:text="@string/trip_time"
                     app:layout_constraintBottom_toBottomOf="@+id/trip_date"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/trip_date"
                     app:layout_constraintTop_toTopOf="@+id/trip_date" />
 
                 <TextView
@@ -60,7 +60,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/trip_name"
-                    app:layout_constraintBottom_toTopOf="@+id/trip_status_text"
+                    app:layout_constraintBottom_toTopOf="@+id/city_from_text"
+                    app:layout_constraintEnd_toEndOf="@+id/trip_date"
                     app:layout_constraintStart_toStartOf="@+id/trip_date"
                     app:layout_constraintTop_toBottomOf="@+id/trip_date" />
 
@@ -70,18 +71,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/city_from"
-                    app:layout_constraintBottom_toTopOf="@+id/city_to_text"
-                    app:layout_constraintStart_toStartOf="@+id/trip_date"
-                    app:layout_constraintTop_toBottomOf="@+id/trip_status_text" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/trip_name_text"
+                    app:layout_constraintStart_toStartOf="@+id/trip_name_text"
+                    app:layout_constraintTop_toBottomOf="@+id/trip_name_text" />
 
                 <TextView
                     android:id="@+id/trip_date"
                     style="@style/trip_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="52dp"
-                    android:layout_marginTop="40dp"
                     android:text="@string/trip_date"
+                    app:layout_constraintBottom_toTopOf="@+id/trip_name_text"
+                    app:layout_constraintEnd_toStartOf="@+id/trip_time_text"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,17 +92,17 @@
                     style="@style/trip_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="40dp"
                     android:text="@string/city_to"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/trip_date" />
+                    app:layout_constraintBottom_toBottomOf="@+id/city_from_text"
+                    app:layout_constraintEnd_toEndOf="@+id/trip_status_text"
+                    app:layout_constraintStart_toStartOf="@+id/trip_status_text"
+                    app:layout_constraintTop_toTopOf="@+id/city_from_text" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
                 android:id="@+id/button5"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:background="@color/black"
                 android:backgroundTint="@color/black"
                 android:drawableTint="@color/black"

@@ -11,15 +11,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SignInWithEmailAndPassword implements SignIn {
 
-    SyncAuth syncAuth;
-
-    public SignInWithEmailAndPassword(SyncAuth syncAuth) {
-        this.syncAuth = syncAuth;
-    }
     @Override
     public void login(String email, String password) {
         FirebaseAuth.getInstance()
-                .signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(syncAuth);
+                .signInWithEmailAndPassword(email, password);
     }
 }

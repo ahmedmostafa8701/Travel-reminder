@@ -1,20 +1,22 @@
 package com.example.travelreminder.pojo;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Trip {
-   private String key;
+   private String tripID;
    private String name;
    private String date;
    private String time;
    private String cityFrom;
    private String cityTo;
-   private Status status;
+   private String status;
 
-   public Trip(String name, String date, String time, String cityFrom, String cityTo, Status status) {
+   public Trip(String name, String date, String time, String cityFrom, String cityTo, String status) {
       this.name = name;
       this.date = date;
       this.time = time;
@@ -22,7 +24,8 @@ public class Trip {
       this.cityTo = cityTo;
       this.status = status;
    }
-
+   public Trip(){
+   }
    public String getName() {
       return name;
    }
@@ -63,19 +66,19 @@ public class Trip {
       this.cityTo = cityTo;
    }
 
-   public Status getStatus() {
+   public String getStatus() {
       return status;
    }
 
-   public void setStatus(Status status) {
+   public void setStatus(String status) {
       this.status = status;
    }
 
-   public String getKey() {
-      return key;
+   public String getTripID() {
+      return tripID;
    }
 
-   public void setKey(String key) {
-      this.key = key;
+   public void setTripID(String tripID) {
+      this.tripID = tripID;
    }
 }
