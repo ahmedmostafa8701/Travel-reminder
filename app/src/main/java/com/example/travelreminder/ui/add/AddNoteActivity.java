@@ -1,4 +1,4 @@
-package com.example.travelreminder.ui;
+package com.example.travelreminder.ui.add;
 
 import androidx.appcompat.app.AppCompatActivity;
 

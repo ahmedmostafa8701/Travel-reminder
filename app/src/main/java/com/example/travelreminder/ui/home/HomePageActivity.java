@@ -20,13 +20,9 @@ import android.widget.TextView;
 import com.example.travelreminder.R;
 import com.example.travelreminder.databinding.ActivityHomePageBinding;
 import com.example.travelreminder.pojo.Constants;
-import com.example.travelreminder.pojo.database.RunTimeData;
-import com.example.travelreminder.pojo.datalayer.Repo;
 import com.example.travelreminder.pojo.entities.User;
-import com.example.travelreminder.ui.AddTripActivity;
-import com.example.travelreminder.ui.TripAdapter;
+import com.example.travelreminder.ui.add.AddTripActivity;
 import com.example.travelreminder.ui.login.LoginActivity;
-import com.google.android.material.navigation.NavigationView;
 
 public class HomePageActivity extends AppCompatActivity{
     ActivityHomePageBinding binding;
@@ -112,6 +108,7 @@ public class HomePageActivity extends AppCompatActivity{
                 viewModel.signOut();
             }
             startActivity(new Intent(this, LoginActivity.class));
+            finish();
         }
         return true;
     }

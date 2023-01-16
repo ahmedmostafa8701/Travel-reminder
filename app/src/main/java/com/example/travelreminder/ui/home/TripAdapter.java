@@ -1,4 +1,4 @@
-package com.example.travelreminder.ui;
+package com.example.travelreminder.ui.home;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,11 +12,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelreminder.R;
-import com.example.travelreminder.pojo.datalayer.Repo;
 import com.example.travelreminder.pojo.entities.Trip;
 
 import java.util.ArrayList;
