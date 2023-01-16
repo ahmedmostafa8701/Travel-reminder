@@ -1,4 +1,4 @@
-package com.example.travelreminder.pojo;
+package com.example.travelreminder.pojo.entities;
 
 import android.graphics.Bitmap;
 
@@ -63,22 +63,30 @@ public class User{
    public List<Trip> getTrips() {
       return trips;
    }
-
    public void setTrips(List<Trip> trips) {
       this.trips = trips;
    }
    public void addTrip(Trip trip){
       trips.add(trip);
    }
-   public void updateTrip(Trip update){
+   public Trip getTrip(String tripID){
       for (Trip trip : trips) {
-            if(trip.getTripID() == update.getTripID()){
-               trip = trip;
-               return;
-            }
+         if(trip.getTripID().equals(tripID)){
+            return trip;
+         }
+      }
+      return null;
+   }
+   public void updateTrip(String tripID, Trip update){
+      Trip trip = getTrip(tripID);
+      if(trip != null){
+         trips.set(trips.indexOf(trip), update);
       }
    }
-   public void removeTrip(Trip trip){
-      trips.remove(trip);
+   public void removeTrip(String tripID){
+      Trip trip = getTrip(tripID);
+      if (trip != null) {
+         trips.remove(trip);
+      }
    }
 }

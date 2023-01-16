@@ -5,16 +5,19 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelreminder.R;
-import com.example.travelreminder.pojo.Trip;
+import com.example.travelreminder.pojo.datalayer.Repo;
+import com.example.travelreminder.pojo.entities.Trip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +26,11 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
 
     Context context;
     List<Trip> trips;
-
-    public TripAdapter(Context context) {
+    TripMenuItem menuItem;
+    public TripAdapter(Context context, TripMenuItem menuItem) {
         this.context = context;
         trips = new ArrayList<>();
+        this.menuItem = menuItem;
     }
 
     @NonNull
@@ -53,6 +57,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
                 holder.hidden.setVisibility(View.GONE);
             }
         });
+        holder.tripMenu.setOnClickListener((view) -> menuItem.onItemMenuClick(position));
     }
 
     @Override
@@ -71,7 +76,10 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
         TextView tripStatus;
         TextView tripFrom;
         TextView tripTo;
-        ImageView tripImage;
+        LinearLayout tripImage;
+        ImageView tripMenu;
+        ImageButton delete;
+        ImageButton edit;
         ConstraintLayout hidden;
         public ViewHolder(@NonNull View view) {
             super(view);
@@ -82,6 +90,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
             tripTo = view.findViewById(R.id.city_to_text);
             tripStatus = view.findViewById(R.id.trip_status_text);
             tripImage = view.findViewById(R.id.trip_image);
+            tripMenu = view.findViewById(R.id.trip_menu);
+            delete = view.findViewById(R.id.delete_trip_menu);
+            edit = view.findViewById(R.id.edit_trip_menu);
             hidden = view.findViewById(R.id.hidden);
         }
     }

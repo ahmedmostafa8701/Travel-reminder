@@ -1,17 +1,14 @@
-package com.example.travelreminder.ui.auth;
+package com.example.travelreminder.ui.login;
 
-import androidx.lifecycle.LiveData;
+import android.content.Intent;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.travelreminder.Auth.SignIn;
 import com.example.travelreminder.Auth.SignInWithEmailAndPassword;
-import com.example.travelreminder.Validation;
-import com.example.travelreminder.pojo.User;
-import com.example.travelreminder.pojo.datalayer.remote.FirebaseDataLayer;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginViewModel extends ViewModel {
     SignIn signIn;

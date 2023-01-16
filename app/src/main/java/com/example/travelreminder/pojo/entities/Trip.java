@@ -1,4 +1,4 @@
-package com.example.travelreminder.pojo;
+package com.example.travelreminder.pojo.entities;
 
 import com.google.firebase.auth.FirebaseAuth;
 

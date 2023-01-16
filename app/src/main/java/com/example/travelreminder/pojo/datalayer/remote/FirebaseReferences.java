@@ -42,7 +42,7 @@ public class FirebaseReferences {
         return getUser().child("userName");
     }
 
-    public static FirebaseReferences newInstance() {
+    public static FirebaseReferences getInstance() {
         return new FirebaseReferences();
     }
 }

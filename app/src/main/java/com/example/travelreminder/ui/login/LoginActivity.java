@@ -1,4 +1,4 @@
-package com.example.travelreminder.ui.auth;
+package com.example.travelreminder.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -12,6 +12,7 @@ import com.example.travelreminder.R;
 import com.example.travelreminder.Validation;
 import com.example.travelreminder.databinding.ActivityLoginUserBinding;
 import com.example.travelreminder.ui.home.HomePageActivity;
+import com.example.travelreminder.ui.register.SignUpActivity;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, Observer<FirebaseUser> {

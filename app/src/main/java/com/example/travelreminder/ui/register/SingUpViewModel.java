@@ -1,16 +1,12 @@
-package com.example.travelreminder.ui.auth;
-
-import android.os.AsyncTask;
+package com.example.travelreminder.ui.register;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.travelreminder.Auth.SignIn;
-import com.example.travelreminder.Auth.SignInWithEmailAndPassword;
 import com.example.travelreminder.Auth.SignUp;
 import com.example.travelreminder.Auth.SignUpWithEmailAndPassword;
-import com.example.travelreminder.pojo.User;
+import com.example.travelreminder.pojo.entities.User;
 import com.example.travelreminder.pojo.database.RunTimeData;
 import com.example.travelreminder.pojo.datalayer.IDatalayer;
 import com.example.travelreminder.pojo.datalayer.remote.FirebaseDataLayer;

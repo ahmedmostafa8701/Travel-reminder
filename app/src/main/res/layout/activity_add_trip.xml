@@ -63,7 +63,9 @@
                 android:layout_marginTop="12dp"
                 android:ems="10"
                 android:hint="@string/date"
-                android:inputType="date"
+                android:inputType="none"
+                android:focusable="false"
+                android:cursorVisible="false"
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="@+id/trip_name_add_trip"
                 app:layout_constraintStart_toStartOf="@+id/trip_name_add_trip"
@@ -76,30 +78,13 @@
                 android:layout_marginTop="12dp"
                 android:ems="10"
                 android:hint="@string/time"
-                android:inputType="time"
+                android:inputType="none"
+                android:focusable="false"
+                android:cursorVisible="false"
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="@+id/arrival_date_add_trip"
                 app:layout_constraintStart_toStartOf="@+id/arrival_date_add_trip"
                 app:layout_constraintTop_toBottomOf="@+id/arrival_date_add_trip" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Trip Type"
-                app:layout_constraintStart_toStartOf="@+id/arrival_time_add_trip"
-                app:layout_constraintTop_toBottomOf="@+id/arrival_time_add_trip" />
-
-            <Spinner
-                android:id="@+id/trip_type_add_trip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:contentDescription="@string/trip_type"
-                android:minHeight="48dp"
-                app:layout_constraintStart_toStartOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
 
             <ImageView
@@ -114,51 +99,13 @@
                 android:id="@+id/add_trip_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/add"
                 app:cornerRadius="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/set_trip_return" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/set_trip_return"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/trip_type_add_trip">
-
-                <EditText
-                    android:id="@+id/return_date_add_trip"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="24dp"
-                    android:ems="10"
-                    android:hint="@string/date"
-                    android:inputType="date"
-                    android:minHeight="48dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <EditText
-                    android:id="@+id/return_time_add_trip"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:ems="10"
-                    android:hint="@string/time"
-                    android:inputType="time"
-                    android:minHeight="48dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/return_date_add_trip"
-                    app:layout_constraintStart_toStartOf="@+id/return_date_add_trip"
-                    app:layout_constraintTop_toBottomOf="@+id/return_date_add_trip" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toBottomOf="@+id/arrival_time_add_trip" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

@@ -9,22 +9,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.example.travelreminder.R;
 import com.example.travelreminder.databinding.ActivityHomePageBinding;
-import com.example.travelreminder.pojo.User;
+import com.example.travelreminder.pojo.Constants;
+import com.example.travelreminder.pojo.database.RunTimeData;
+import com.example.travelreminder.pojo.datalayer.Repo;
+import com.example.travelreminder.pojo.entities.User;
 import com.example.travelreminder.ui.AddTripActivity;
 import com.example.travelreminder.ui.TripAdapter;
-import com.example.travelreminder.ui.auth.LoginActivity;
+import com.example.travelreminder.ui.login.LoginActivity;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 
-public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+public class HomePageActivity extends AppCompatActivity{
     ActivityHomePageBinding binding;
     View header;
     HomeViewModel viewModel;
@@ -33,13 +37,13 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     ImageView imageView;
     TripAdapter adapter;
     RecyclerView recyclerView;
-    User user;
+    User homeUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
         getUser();
-        binding.fab.setOnClickListener(this);
+        binding.fab.setOnClickListener(view -> startActivity(new Intent(this, AddTripActivity.class)));
     }
 
     void init(){
@@ -50,14 +54,32 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         actionBarDrawerToggle.syncState();
         header = binding.navigationView.getHeaderView(0);
         recyclerView = findViewById(R.id.recycler_view);
-        adapter = new TripAdapter(this);
+        adapter = new TripAdapter(this, position -> showMenu(position));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        binding.navigationView.setNavigationItemSelectedListener(this);
+        binding.navigationView.setNavigationItemSelectedListener(menuItem -> onNavigationItemSelected(menuItem));
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         email = header.findViewById(R.id.email_header);
         username = header.findViewById(R.id.user_name_header);
         imageView = header.findViewById(R.id.image_header);
+    }
+
+    private void showMenu(int position) {
+        PopupMenu popupMenu = new PopupMenu(this, recyclerView.getChildAt(position).findViewById(R.id.trip_menu));
+        popupMenu.inflate(R.menu.trip_item_menu);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            popupMenu.setForceShowIcon(true);
+        }
+        popupMenu.setOnMenuItemClickListener((PopupMenu.OnMenuItemClickListener) item -> {
+            if(item.getItemId() == R.id.delete_trip_menu){
+                viewModel.removeTrip(homeUser.getTrips().get(position).getTripID());
+            }
+            else if(item.getItemId() == R.id.edit_trip_menu){
+                move(AddTripActivity.class, homeUser.getTrips().get(position).getTripID());
+            }
+            return true;
+        });
+        popupMenu.show();
     }
 
     private void getUser() {
@@ -66,6 +88,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
             finish();
         }
         viewModel.getUser().observe(this, (user -> {
+            homeUser = user;
             email.setText(user.getEmail());
             username.setText(user.getUserName());
             if(user.getImage() != null){
@@ -74,8 +97,6 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
             adapter.setTrips(user.getTrips());
         }));
     }
-
-    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.upcoming){
 
@@ -94,11 +115,9 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         }
         return true;
     }
-
-    @Override
-    public void onClick(View v) {
-        if(v.getId() == R.id.fab){
-            startActivity(new Intent(this, AddTripActivity.class));
-        }
+    public void move(Class<?> cls, String tripID) {
+        Intent intent = new Intent(this, cls);
+        intent.putExtra(Constants.TRIP_ID_PASSING, tripID);
+        startActivity(intent);
     }
 }

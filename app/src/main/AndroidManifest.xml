@@ -37,7 +37,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.auth.ForgetPasswordActivity"
+            android:name=".ui.login.ForgetPasswordActivity"
             android:exported="false"
             android:label="@string/app_name"
             android:theme="@style/Theme.TravelReminder.NoActionBar">
@@ -55,7 +55,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.auth.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="false"
             android:label="@string/app_name"
             android:theme="@style/Theme.TravelReminder.NoActionBar">
@@ -64,7 +64,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.auth.SignUpActivity"
+            android:name=".ui.register.SignUpActivity"
             android:exported="false"
             android:label="@string/app_name"
             android:theme="@style/Theme.TravelReminder.NoActionBar">

@@ -1,17 +1,11 @@
 package com.example.travelreminder.pojo.datalayer.remote;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.view.View;
-import android.widget.ImageView;
+import android.media.Image;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.bumptech.glide.Glide;
-import com.example.travelreminder.pojo.Trip;
-import com.example.travelreminder.pojo.User;
+import com.example.travelreminder.pojo.entities.Trip;
+import com.example.travelreminder.pojo.entities.User;
 import com.example.travelreminder.pojo.database.RunTimeData;
 import com.example.travelreminder.pojo.datalayer.IDatalayer;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,10 +20,11 @@ import java.util.List;
 public class FirebaseDataLayer implements IDatalayer {
 
     private final RunTimeData runTimeData = RunTimeData.instance;
+    private final FirebaseReferences ref = FirebaseReferences.getInstance();
 
     @Override
     public void getUser() {
-        FirebaseReferences ref = FirebaseReferences.newInstance();
+        FirebaseReferences ref = this.ref;
         DatabaseReference dataRef = ref.getUser();
         dataRef.get().addOnCompleteListener((task -> {
             if(task.isSuccessful()){
@@ -77,7 +72,7 @@ public class FirebaseDataLayer implements IDatalayer {
     @Override
     public void getTrips() {
         // not used yet
-        FirebaseReferences ref = FirebaseReferences.newInstance();
+        FirebaseReferences ref = this.ref;
         DatabaseReference dataRef = ref.getTrips();
         dataRef.get().addOnCompleteListener((task -> {
             List<Trip> trips = new ArrayList<>();
@@ -97,7 +92,7 @@ public class FirebaseDataLayer implements IDatalayer {
     public void addUser(User user) {
         runTimeData.setUser(user);
         User fUser = new User(user.getEmail(), user.getUserName(), user.getPhone(), user.getTrips());
-        FirebaseReferences ref = FirebaseReferences.newInstance();
+        FirebaseReferences ref = this.ref;
         DatabaseReference dataRef = ref.getUsers();
         dataRef.child(FirebaseAuth.getInstance().getUid()).setValue(fUser).addOnCompleteListener((task -> {
             if(task.isSuccessful()){
@@ -111,7 +106,7 @@ public class FirebaseDataLayer implements IDatalayer {
         User user = runTimeData.getUser().getValue();
         user.addTrip(trip);
         runTimeData.setUser(user);
-        FirebaseReferences ref = FirebaseReferences.newInstance();
+        FirebaseReferences ref = this.ref;
         DatabaseReference dataRef = ref.getTrips();
         String tripID = dataRef.push().getKey();
         trip.setTripID(tripID);
@@ -125,22 +120,40 @@ public class FirebaseDataLayer implements IDatalayer {
             }
         }
     }
+
+    @Override
+    public void removeTrip(String tripID) {
+        User user = runTimeData.getUser().getValue();
+        user.removeTrip(tripID);
+        runTimeData.setUser(user);
+        DatabaseReference reference = FirebaseReferences.getInstance().getTrip(tripID);
+        reference.removeValue();
+    }
+
+    @Override
+    public void updateTrip(String tripID, Trip update) {
+        User user = runTimeData.getUser().getValue();
+        user.updateTrip(tripID, update);
+        runTimeData.setUser(user);
+        DatabaseReference reference = FirebaseReferences.getInstance().getTrip(tripID);
+        reference.setValue(update);
+    }
+
     @Override
     public void addProfileImage(Bitmap bitmap) {
         User user = runTimeData.getUser().getValue();
         user.setImage(bitmap);
         runTimeData.setUser(user);
-        FirebaseReferences ref = FirebaseReferences.newInstance();
+        FirebaseReferences ref = this.ref;
         StorageReference storeRef = ref.getStorageRef().child("users/" + FirebaseAuth.getInstance().getUid() + "/images/" + ref.profileImageName);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
         storeRef.putBytes(data);
     }
-
     @Override
     public void getProfileImage() {
-        FirebaseReferences ref = FirebaseReferences.newInstance();
+        FirebaseReferences ref = this.ref;
         StorageReference storeRef = ref.getProfileImage();
         storeRef.getBytes(20 * 1024 * 1024).addOnCompleteListener((task)->{
             if(task.isSuccessful()){

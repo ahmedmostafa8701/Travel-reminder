@@ -1,4 +1,4 @@
-package com.example.travelreminder.ui.auth;
+package com.example.travelreminder.ui.register;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -14,13 +14,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.travelreminder.R;
 import com.example.travelreminder.Validation;
 import com.example.travelreminder.databinding.ActivitySignUpBinding;
-import com.example.travelreminder.pojo.User;
+import com.example.travelreminder.pojo.entities.User;
 import com.example.travelreminder.ui.home.HomePageActivity;
+import com.example.travelreminder.ui.login.LoginActivity;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.io.IOException;
