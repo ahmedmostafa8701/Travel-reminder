@@ -4,22 +4,21 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.travelreminder.Auth.SignUp;
-import com.example.travelreminder.Auth.SignUpWithEmailAndPassword;
-import com.example.travelreminder.pojo.entities.User;
-import com.example.travelreminder.pojo.database.RunTimeData;
-import com.example.travelreminder.pojo.datalayer.IDatalayer;
-import com.example.travelreminder.pojo.datalayer.remote.FirebaseDataLayer;
+import com.example.travelreminder.Auth.Auth;
+import com.example.travelreminder.model.User;
+import com.example.travelreminder.model.RunTimeData;
+import com.example.travelreminder.datalayer.IDatalayer;
+import com.example.travelreminder.datalayer.remote.FirebaseDataLayer;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SingUpViewModel extends ViewModel {
-    SignUp signUp;
+    Auth auth;
     private MutableLiveData<FirebaseUser> _fireUser = new MutableLiveData<>();
     private LiveData<FirebaseUser> fireUser = _fireUser;
     IDatalayer datalayer;
     public SingUpViewModel() {
-        signUp = new SignUpWithEmailAndPassword();
+        auth = new Auth();
         datalayer = new FirebaseDataLayer();
         if(FirebaseAuth.getInstance().getCurrentUser() != null){
             _fireUser.setValue(FirebaseAuth.getInstance().getCurrentUser());

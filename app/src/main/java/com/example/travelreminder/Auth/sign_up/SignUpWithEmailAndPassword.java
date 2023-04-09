@@ -1,4 +1,4 @@
-package com.example.travelreminder.Auth;
+package com.example.travelreminder.Auth.sign_up;
 
 import com.google.firebase.auth.FirebaseAuth;
 

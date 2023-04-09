@@ -1,13 +1,12 @@
-package com.example.travelreminder.pojo.datalayer.remote;
+package com.example.travelreminder.datalayer.remote;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 
-import com.example.travelreminder.pojo.entities.Trip;
-import com.example.travelreminder.pojo.entities.User;
-import com.example.travelreminder.pojo.database.RunTimeData;
-import com.example.travelreminder.pojo.datalayer.IDatalayer;
+import com.example.travelreminder.datalayer.IDatalayer;
+import com.example.travelreminder.model.Trip;
+import com.example.travelreminder.model.User;
+import com.example.travelreminder.model.RunTimeData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -37,22 +36,22 @@ public class FirebaseDataLayer implements IDatalayer {
                     for (DataSnapshot trip : result.child("trips").getChildren()) {
                         Trip trip1 = new Trip();
                         for (DataSnapshot child : trip.getChildren()) {
-                            if(child.getKey().toString().equals("tripID")){
+                            if(child.getKey().equals("tripID")){
                                 trip1.setTripID(child.getValue(String.class));
                             }
-                            else if(child.getKey().toString().equals("status")){
+                            else if(child.getKey().equals("status")){
                                 trip1.setStatus(child.getValue(String.class));
                             }
-                            else if(child.getKey().toString().equals("name")){
+                            else if(child.getKey().equals("name")){
                                 trip1.setName(child.getValue(String.class));
                             }
-                            else if(child.getKey().toString().equals("date")){
+                            else if(child.getKey().equals("date")){
                                 trip1.setDate(child.getValue(String.class));
                             }
-                            else if(child.getKey().toString().equals("time")){
+                            else if(child.getKey().equals("time")){
                                 trip1.setTime(child.getValue(String.class));
                             }
-                            else if(child.getKey().toString().equals("cityFrom")){
+                            else if(child.getKey().equals("cityFrom")){
                                 trip1.setCityFrom(child.getValue(String.class));
                             }
                             else if(child.getKey().equals("cityTo")){
@@ -168,15 +167,5 @@ public class FirebaseDataLayer implements IDatalayer {
                 }
             }
         });
-    }
-
-    @Override
-    public boolean isAuth() {
-        return FirebaseAuth.getInstance().getCurrentUser() != null;
-    }
-
-    @Override
-    public void signOut() {
-        FirebaseAuth.getInstance().signOut();
     }
 }

@@ -1,9 +1,9 @@
-package com.example.travelreminder.pojo.datalayer;
+package com.example.travelreminder.datalayer;
 
 import android.graphics.Bitmap;
 
-import com.example.travelreminder.pojo.entities.Trip;
-import com.example.travelreminder.pojo.entities.User;
+import com.example.travelreminder.model.Trip;
+import com.example.travelreminder.model.User;
 
 import java.util.List;
 
@@ -17,6 +17,4 @@ public interface IDatalayer {
  public void updateTrip(String tripID, Trip update);
  public void addProfileImage(Bitmap bitmap);
  public void getProfileImage();
- public boolean isAuth();
- public void signOut();
 }

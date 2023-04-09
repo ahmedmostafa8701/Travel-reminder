@@ -1,4 +1,4 @@
-package com.example.travelreminder.pojo.datalayer.remote;
+package com.example.travelreminder.datalayer.remote;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;

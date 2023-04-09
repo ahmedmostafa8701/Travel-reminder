@@ -1,21 +1,24 @@
-package com.example.travelreminder.ui.add;
+package com.example.travelreminder.ui.addtrip;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
+import com.example.travelreminder.Constants;
 import com.example.travelreminder.R;
 import com.example.travelreminder.databinding.ActivityAddTripBinding;
-import com.example.travelreminder.pojo.Constants;
-import com.example.travelreminder.pojo.datalayer.Repo;
-import com.example.travelreminder.pojo.entities.Status;
-import com.example.travelreminder.pojo.entities.Trip;
-import com.example.travelreminder.pojo.database.RunTimeData;
+import com.example.travelreminder.ui.home.Repo;
+import com.example.travelreminder.model.RunTimeData;
+import com.example.travelreminder.model.Status;
+import com.example.travelreminder.model.Trip;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class AddTripActivity extends AppCompatActivity {
@@ -29,7 +32,6 @@ public class AddTripActivity extends AppCompatActivity {
         getPassedData();
     }
 
-
     private void initialize() {
         trip = new Trip();
         editable = false;
@@ -37,13 +39,22 @@ public class AddTripActivity extends AppCompatActivity {
         binding.arrivalDateAddTrip.setOnClickListener((view) -> datePicker());
         binding.arrivalTimeAddTrip.setOnClickListener((view) -> timePicker());
         binding.addTripBtn.setOnClickListener((view)->addTrip());
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, new ArrayList<String>());
+        binding.fromAddTrip.setAdapter(adapter);
+        binding.fromAddTrip.addTextChangedListener(new CityWatcher(this, adapter));
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, new ArrayList<String>());
+        binding.toAddTrip.setAdapter(adapter2);
+        binding.toAddTrip.addTextChangedListener(new CityWatcher(this, adapter2));
     }
     private void getPassedData() {
         Intent intent = getIntent();
         if(intent != null && intent.getExtras() != null){
+            String tripID = intent.getExtras().getString(Constants.TRIP_ID_PASSING, "");
+            if(tripID.equals("")){
+                return;
+            }
             editable = true;
             binding.addTripBtn.setText("Edit");
-            String tripID = intent.getExtras().getString(Constants.TRIP_ID_PASSING);
             trip = RunTimeData.instance.getUser().getValue().getTrip(tripID);
             binding.arrivalTimeAddTrip.setText(trip.getTime());
             binding.arrivalDateAddTrip.setText(trip.getDate());

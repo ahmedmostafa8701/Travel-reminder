@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
 import com.example.travelreminder.R;
 import com.example.travelreminder.Validation;
 import com.example.travelreminder.databinding.ActivityLoginUserBinding;
@@ -26,8 +27,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getViewModel();
         init();
+        getViewModel();
     }
 
     private void getViewModel() {
@@ -38,7 +39,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void init() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login_user);
         binding.loginBtn.setOnClickListener(this);
-        binding.registerBtn.setOnClickListener(this);
+        binding.register.setOnClickListener(this);
         validation = new Validation();
     }
 
@@ -56,7 +57,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             password = binding.passwordInput.getText().toString();
             login(email, password);
         }
-        else if(v.getId() == binding.registerBtn.getId()){
+        else if(v.getId() == binding.register.getId()){
             startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             finish();
         }

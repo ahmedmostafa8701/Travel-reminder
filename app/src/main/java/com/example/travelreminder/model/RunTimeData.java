@@ -1,9 +1,7 @@
-package com.example.travelreminder.pojo.database;
+package com.example.travelreminder.model;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
-import com.example.travelreminder.pojo.entities.User;
 
 public enum RunTimeData {
     instance;

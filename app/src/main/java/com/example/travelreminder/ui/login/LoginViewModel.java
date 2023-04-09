@@ -1,20 +1,17 @@
 package com.example.travelreminder.ui.login;
 
-import android.content.Intent;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.travelreminder.Auth.SignIn;
-import com.example.travelreminder.Auth.SignInWithEmailAndPassword;
+import com.example.travelreminder.Auth.Auth;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginViewModel extends ViewModel {
-    SignIn signIn;
+    Auth auth;
     private MutableLiveData<FirebaseUser> _fireUser = new MutableLiveData<>();
     public LoginViewModel() {
-        signIn = new SignInWithEmailAndPassword();
+        auth = new Auth();
         if(FirebaseAuth.getInstance().getCurrentUser() != null){
             _fireUser.setValue(FirebaseAuth.getInstance().getCurrentUser());
         }

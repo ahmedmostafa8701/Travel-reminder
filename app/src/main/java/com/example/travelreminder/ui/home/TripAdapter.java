@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,7 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelreminder.R;
-import com.example.travelreminder.pojo.entities.Trip;
+import com.example.travelreminder.model.Trip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +26,12 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
     Context context;
     List<Trip> trips;
     TripMenuItem menuItem;
-    public TripAdapter(Context context, TripMenuItem menuItem) {
+    StartTrip startTrip;
+    public TripAdapter(Context context, TripMenuItem menuItem, StartTrip startTrip) {
         this.context = context;
         trips = new ArrayList<>();
         this.menuItem = menuItem;
+        this.startTrip = startTrip;
     }
 
     @NonNull
@@ -56,6 +59,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
             }
         });
         holder.tripMenu.setOnClickListener((view) -> menuItem.onItemMenuClick(position));
+        holder.startTrip.setOnClickListener((view) -> {
+            startTrip.start(trips.get(position));
+        });
     }
 
     @Override
@@ -78,6 +84,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
         ImageView tripMenu;
         ImageButton delete;
         ImageButton edit;
+        Button startTrip;
         ConstraintLayout hidden;
         public ViewHolder(@NonNull View view) {
             super(view);
@@ -91,6 +98,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
             tripMenu = view.findViewById(R.id.trip_menu);
             delete = view.findViewById(R.id.delete_trip_menu);
             edit = view.findViewById(R.id.edit_trip_menu);
+            startTrip = view.findViewById(R.id.start_trip);
             hidden = view.findViewById(R.id.hidden);
         }
     }

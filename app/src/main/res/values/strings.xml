@@ -2,15 +2,15 @@
     <string name="app_name">Travel reminder</string>
     <string name="sign_up_layout">sign up layout</string>
     <string name="profile_img">profile image</string>
-    <string name="already_registered">Already Registered Sign in here</string>
-    <string name="sign_up_button">sign up</string>
+    <string name="already_registered">Already Registered</string>
+    <string name="sign_up">sign up</string>
     <string name="new_account_text">New Account</string>
     <string name="name_enter">Name</string>
     <string name="user_name_enter">User name</string>
     <string name="password_enter">Password</string>
-    <string name="retype_password_enter">Re-type Password</string>
-    <string name="phone_number_enter">Phone Number</string>
-    <string name="upload_profile_pic">Upload Picture</string>
+    <string name="retype_password">Re-type Password</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="upload_picture">Upload Picture</string>
     <string name="email">Email</string>
     <string name="forget_password">Forget Password</string>
     <string name="get_password">Get Password</string>
@@ -54,4 +54,5 @@
     <string name="open">Open Drawer</string>
     <string name="close">Close Drawer</string>
     <string name="trip_type">Trip Type</string>
+    <string name="or_sign_up_with">or sign up with</string>
 </resources>

@@ -18,7 +18,7 @@ import android.view.View;
 import com.example.travelreminder.R;
 import com.example.travelreminder.Validation;
 import com.example.travelreminder.databinding.ActivitySignUpBinding;
-import com.example.travelreminder.pojo.entities.User;
+import com.example.travelreminder.model.User;
 import com.example.travelreminder.ui.home.HomePageActivity;
 import com.example.travelreminder.ui.login.LoginActivity;
 import com.google.firebase.auth.FirebaseUser;
@@ -76,8 +76,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         if(v.getId() == binding.signUpButton.getId()){
             userName = binding.userNameEnter.getText().toString();
             phone = binding.phoneEnter.getText().toString();
-            email = binding.emailEnterReg.getText().toString();
-            password = binding.passwordEnter.getText().toString();
+            email = binding.emailInput.getText().toString();
+            password = binding.passwordInput.getText().toString();
             rePassword = binding.rePasswordEnter.getText().toString();
             signUp(email, password);
         }

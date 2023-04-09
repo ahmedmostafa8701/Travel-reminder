@@ -1,14 +1,7 @@
 package com.example.travelreminder.ui.home;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -17,12 +10,23 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.travelreminder.Constants;
 import com.example.travelreminder.R;
 import com.example.travelreminder.databinding.ActivityHomePageBinding;
-import com.example.travelreminder.pojo.Constants;
-import com.example.travelreminder.pojo.entities.User;
-import com.example.travelreminder.ui.add.AddTripActivity;
+import com.example.travelreminder.model.Trip;
+import com.example.travelreminder.model.User;
+import com.example.travelreminder.ui.addtrip.AddTripActivity;
 import com.example.travelreminder.ui.login.LoginActivity;
+
 
 public class HomePageActivity extends AppCompatActivity{
     ActivityHomePageBinding binding;
@@ -50,10 +54,22 @@ public class HomePageActivity extends AppCompatActivity{
         actionBarDrawerToggle.syncState();
         header = binding.navigationView.getHeaderView(0);
         recyclerView = findViewById(R.id.recycler_view);
-        adapter = new TripAdapter(this, position -> showMenu(position));
+        adapter = new TripAdapter(this, this::showMenu, new StartTrip() {
+            @RequiresApi(api = Build.VERSION_CODES.P)
+            @Override
+            public void start(Trip trip) {
+                String origin = trip.getCityFrom();
+                String destination = trip.getCityTo();
+                Uri directionsUri = Uri.parse("https://www.google.com/maps/dir/?api=1&origin=" + origin + "&destination=" + destination);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, directionsUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        binding.navigationView.setNavigationItemSelectedListener(menuItem -> onNavigationItemSelected(menuItem));
+        binding.navigationView.setNavigationItemSelectedListener(this::onNavigationItemSelected);
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         email = header.findViewById(R.id.email_header);
         username = header.findViewById(R.id.user_name_header);
@@ -79,11 +95,11 @@ public class HomePageActivity extends AppCompatActivity{
     }
 
     private void getUser() {
-        if(!viewModel.isAuth()){
+        if(!viewModel.isSignIn()){
             startActivity(new Intent(HomePageActivity.this, LoginActivity.class));
             finish();
         }
-        viewModel.getUser().observe(this, (user -> {
+        viewModel.getUser().observe(this, user -> {
             homeUser = user;
             email.setText(user.getEmail());
             username.setText(user.getUserName());
@@ -91,7 +107,7 @@ public class HomePageActivity extends AppCompatActivity{
                 imageView.setImageBitmap(user.getImage());
             }
             adapter.setTrips(user.getTrips());
-        }));
+        });
     }
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.upcoming){
@@ -104,7 +120,7 @@ public class HomePageActivity extends AppCompatActivity{
 
         }
         else if(item.getItemId() == R.id.sign_out){
-            if(viewModel.isAuth()){
+            if(viewModel.isSignIn()){
                 viewModel.signOut();
             }
             startActivity(new Intent(this, LoginActivity.class));

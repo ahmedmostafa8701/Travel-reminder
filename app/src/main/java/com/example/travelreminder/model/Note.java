@@ -1,4 +1,4 @@
-package com.example.travelreminder.pojo.entities;
+package com.example.travelreminder.model;
 
 public class Note {
    private String Content;

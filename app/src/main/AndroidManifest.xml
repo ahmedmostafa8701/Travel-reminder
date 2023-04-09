@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
+        android:name=".application.App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelReminder"
         tools:targetApi="31">
+
         <activity
             android:name=".ui.home.HomePageActivity"
             android:exported="true"
@@ -28,7 +33,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.add.AddTripActivity"
+            android:name=".ui.addtrip.AddTripActivity"
             android:exported="false"
             android:label="@string/app_name"
             android:theme="@style/Theme.TravelReminder.NoActionBar">
@@ -46,7 +51,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.add.AddNoteActivity"
+            android:name=".ui.addtrip.AddNoteActivity"
             android:exported="false"
             android:label="@string/app_name"
             android:theme="@style/Theme.TravelReminder.NoActionBar">
@@ -72,6 +77,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <receiver android:name=".broadcastreceivers.Reciever"/>
     </application>
 
 </manifest>

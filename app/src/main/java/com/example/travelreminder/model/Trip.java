@@ -1,11 +1,4 @@
-package com.example.travelreminder.pojo.entities;
-
-import com.google.firebase.auth.FirebaseAuth;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+package com.example.travelreminder.model;
 
 public class Trip {
    private String tripID;
