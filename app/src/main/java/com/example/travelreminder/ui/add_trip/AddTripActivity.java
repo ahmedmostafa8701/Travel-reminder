@@ -1,4 +1,4 @@
-package com.example.travelreminder.ui.addtrip;
+package com.example.travelreminder.ui.add_trip;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -9,22 +9,26 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.travelreminder.Constants;
 import com.example.travelreminder.R;
 import com.example.travelreminder.databinding.ActivityAddTripBinding;
-import com.example.travelreminder.ui.home.Repo;
 import com.example.travelreminder.model.RunTimeData;
 import com.example.travelreminder.model.Status;
 import com.example.travelreminder.model.Trip;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
+import java.util.Random;
 
 public class AddTripActivity extends AppCompatActivity {
     ActivityAddTripBinding binding;
     Trip trip;
     boolean editable;
+    AddTripViewModel viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,8 @@ public class AddTripActivity extends AppCompatActivity {
     }
 
     private void initialize() {
+        viewModel = new ViewModelProvider(this).get(AddTripViewModel.class);
+        viewModel.setContext(this);
         trip = new Trip();
         editable = false;
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_trip);
@@ -88,7 +94,12 @@ public class AddTripActivity extends AppCompatActivity {
             Toast.makeText(this, "Enter all data correct", Toast.LENGTH_SHORT).show();
             return;
         }
-        Repo repo = new Repo();
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        String currentDateTimeString = dateFormat.format(calendar.getTime());
+        Random random = new Random();
+        String tripId = currentDateTimeString + " " + random.nextInt(1000);
+        trip.setTripID(tripId);
         trip.setCityFrom(binding.fromAddTrip.getText().toString());
         trip.setCityTo(binding.toAddTrip.getText().toString());
         trip.setDate(binding.arrivalDateAddTrip.getText().toString());
@@ -96,10 +107,10 @@ public class AddTripActivity extends AppCompatActivity {
         trip.setStatus(Status.Upcoming.toString());
         trip.setName(binding.tripNameAddTrip.getText().toString());
         if(editable){
-            repo.updateTrip(trip.getTripID(), trip);
+            viewModel.updateTrip(trip.getTripID(), trip);
         }
         else{
-            repo.addTrip(trip);
+            viewModel.addTrip(trip);
         }
         finish();
     }

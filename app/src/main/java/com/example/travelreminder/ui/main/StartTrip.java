@@ -1,4 +1,4 @@
-package com.example.travelreminder.ui.home;
+package com.example.travelreminder.ui.main;
 
 import com.example.travelreminder.model.Trip;
 

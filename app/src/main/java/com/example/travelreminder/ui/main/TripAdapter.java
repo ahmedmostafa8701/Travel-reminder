@@ -1,4 +1,4 @@
-package com.example.travelreminder.ui.home;
+package com.example.travelreminder.ui.main;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -37,7 +37,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.trip_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.trip_list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -49,7 +49,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
         holder.tripFrom.setText(trip.getCityFrom());
         holder.tripTo.setText(trip.getCityTo());
         holder.tripName.setText(trip.getName());
-        holder.tripStatus.setText(trip.getStatus());
         holder.tripImage.setOnClickListener((view)->{
             if(holder.hidden.getVisibility() == View.GONE){
                 holder.hidden.setVisibility(View.VISIBLE);
@@ -77,7 +76,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
         TextView tripName;
         TextView tripDate;
         TextView tripTime;
-        TextView tripStatus;
         TextView tripFrom;
         TextView tripTo;
         LinearLayout tripImage;
@@ -93,7 +91,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
             tripFrom = view.findViewById(R.id.city_from_text);
             tripName = view.findViewById(R.id.trip_name_text);
             tripTo = view.findViewById(R.id.city_to_text);
-            tripStatus = view.findViewById(R.id.trip_status_text);
             tripImage = view.findViewById(R.id.trip_image);
             tripMenu = view.findViewById(R.id.trip_menu);
             delete = view.findViewById(R.id.delete_trip_menu);

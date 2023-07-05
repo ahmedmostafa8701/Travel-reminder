@@ -3,10 +3,13 @@ package com.example.travelreminder.datalayer.remote;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.example.travelreminder.datalayer.IDatalayer;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.work.ListenableWorker.Result;
+
+import com.example.travelreminder.model.RunTimeData;
 import com.example.travelreminder.model.Trip;
 import com.example.travelreminder.model.User;
-import com.example.travelreminder.model.RunTimeData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -16,14 +19,14 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirebaseDataLayer implements IDatalayer {
+public class FirebaseDataLayer implements IRemoteDataLayer {
 
     private final RunTimeData runTimeData = RunTimeData.instance;
     private final FirebaseReferences ref = FirebaseReferences.getInstance();
 
     @Override
-    public void getUser() {
-        FirebaseReferences ref = this.ref;
+    public MutableLiveData<Result> loadUser() {
+        MutableLiveData<Result> liveRes = new MutableLiveData<>();
         DatabaseReference dataRef = ref.getUser();
         dataRef.get().addOnCompleteListener((task -> {
             if(task.isSuccessful()){
@@ -33,126 +36,147 @@ public class FirebaseDataLayer implements IDatalayer {
                     user.setUserName(result.child("userName").getValue(String.class));
                     user.setEmail(result.child("email").getValue(String.class));
                     user.setPhone(result.child("phone").getValue(String.class));
-                    for (DataSnapshot trip : result.child("trips").getChildren()) {
-                        Trip trip1 = new Trip();
-                        for (DataSnapshot child : trip.getChildren()) {
-                            if(child.getKey().equals("tripID")){
-                                trip1.setTripID(child.getValue(String.class));
-                            }
-                            else if(child.getKey().equals("status")){
-                                trip1.setStatus(child.getValue(String.class));
-                            }
-                            else if(child.getKey().equals("name")){
-                                trip1.setName(child.getValue(String.class));
-                            }
-                            else if(child.getKey().equals("date")){
-                                trip1.setDate(child.getValue(String.class));
-                            }
-                            else if(child.getKey().equals("time")){
-                                trip1.setTime(child.getValue(String.class));
-                            }
-                            else if(child.getKey().equals("cityFrom")){
-                                trip1.setCityFrom(child.getValue(String.class));
-                            }
-                            else if(child.getKey().equals("cityTo")){
-                                trip1.setCityTo(child.getValue(String.class));
-                            }
-                        }
-                        user.addTrip(trip1);
-                    }
                 }catch (Exception e){
                     e.printStackTrace();
                 }
                 runTimeData.setUser(user);
+                loadTrips();
+                liveRes.postValue(Result.success());
+            }
+            else{
+                liveRes.postValue(Result.failure());
             }
         }));
-        getProfileImage();
+        loadProfileImage();
+        return liveRes;
     }
     @Override
-    public void getTrips() {
-        // not used yet
-        FirebaseReferences ref = this.ref;
+    public MutableLiveData<Result> loadTrips() {
+        MutableLiveData<Result> liveRes = new MutableLiveData<>();
         DatabaseReference dataRef = ref.getTrips();
         dataRef.get().addOnCompleteListener((task -> {
-            List<Trip> trips = new ArrayList<>();
-            for (DataSnapshot child : task.getResult().getChildren()) {
-                try {
-                    trips.add(child.getValue(Trip.class));
-                }catch (Exception e){
-                    e.printStackTrace();
+            if(task.isSuccessful()){
+                List<Trip> trips = new ArrayList<>();
+                for (DataSnapshot child : task.getResult().getChildren()) {
+                    try {
+                        trips.add(child.getValue(Trip.class));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
+                User user = runTimeData.getUser().getValue();
+                user.setTrips(trips);
+                runTimeData.setUser(user);
+                liveRes.postValue(Result.success());
             }
-            User user = runTimeData.getUser().getValue();
-            user.setTrips(trips);
-            runTimeData.setUser(user);
+            else{
+                liveRes.postValue(Result.failure());
+            }
         }));
+        return liveRes;
     }
     @Override
-    public void addUser(User user) {
+    public MutableLiveData<Result> addUser(User user) {
+        MutableLiveData<Result> liveRes = new MutableLiveData<>();
         runTimeData.setUser(user);
         User fUser = new User(user.getEmail(), user.getUserName(), user.getPhone(), user.getTrips());
-        FirebaseReferences ref = this.ref;
+
         DatabaseReference dataRef = ref.getUsers();
         dataRef.child(FirebaseAuth.getInstance().getUid()).setValue(fUser).addOnCompleteListener((task -> {
             if(task.isSuccessful()){
                 addProfileImage(user.getImage());
+                liveRes.postValue(Result.success());
+            }
+            else{
+                liveRes.postValue(Result.failure());
             }
         }));
+        return liveRes;
     }
 
     @Override
-    public void addTrip(Trip trip) {
-        User user = runTimeData.getUser().getValue();
-        user.addTrip(trip);
-        runTimeData.setUser(user);
-        FirebaseReferences ref = this.ref;
+    public MutableLiveData<Result> addTrip(Trip trip) {
+        MutableLiveData<Result> liveRes = new MutableLiveData<>();
         DatabaseReference dataRef = ref.getTrips();
-        String tripID = dataRef.push().getKey();
-        trip.setTripID(tripID);
-        dataRef.child(tripID).setValue(trip);
-    }
-    @Override
-    public void addTrips(List<Trip> trips) {
-        if(trips != null){
-            for (Trip trip : trips) {
-                addTrip(trip);
+        dataRef.child(trip.getTripID()).setValue(trip).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                liveRes.postValue(Result.success());
             }
-        }
+            else{
+                liveRes.postValue(Result.failure());
+            }
+        });
+        return liveRes;
     }
 
     @Override
-    public void removeTrip(String tripID) {
-        User user = runTimeData.getUser().getValue();
-        user.removeTrip(tripID);
-        runTimeData.setUser(user);
+    public MutableLiveData<Result> removeUser() {
+        MutableLiveData<Result> liveRes = new MutableLiveData<>();
+        DatabaseReference reference = FirebaseReferences.getInstance().getUser();
+        reference.removeValue().addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                liveRes.postValue(Result.success());
+            }
+            else{
+                liveRes.postValue(Result.failure());
+            }
+        });
+        return liveRes;
+    }
+    @Override
+    public MutableLiveData<Result> removeTrip(String tripID) {
+        MutableLiveData<Result> liveRes = new MutableLiveData<>();
         DatabaseReference reference = FirebaseReferences.getInstance().getTrip(tripID);
-        reference.removeValue();
+        reference.removeValue().addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                liveRes.postValue(Result.success());
+            }
+            else{
+                liveRes.postValue(Result.failure());
+            }
+        });
+        return liveRes;
     }
 
+
     @Override
-    public void updateTrip(String tripID, Trip update) {
-        User user = runTimeData.getUser().getValue();
-        user.updateTrip(tripID, update);
-        runTimeData.setUser(user);
+    public MutableLiveData<Result> updateTrip(String tripID, Trip update) {
+        MutableLiveData<Result> liveRes = new MutableLiveData<>();
         DatabaseReference reference = FirebaseReferences.getInstance().getTrip(tripID);
-        reference.setValue(update);
+        reference.setValue(update).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                liveRes.postValue(Result.success());
+            }
+            else{
+                liveRes.postValue(Result.failure());
+            }
+        });
+        return liveRes;
     }
 
     @Override
-    public void addProfileImage(Bitmap bitmap) {
+    public MutableLiveData<Result> addProfileImage(Bitmap bitmap) {
+        MutableLiveData<Result> liveRes = new MutableLiveData<>();
         User user = runTimeData.getUser().getValue();
         user.setImage(bitmap);
         runTimeData.setUser(user);
-        FirebaseReferences ref = this.ref;
         StorageReference storeRef = ref.getStorageRef().child("users/" + FirebaseAuth.getInstance().getUid() + "/images/" + ref.profileImageName);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
-        storeRef.putBytes(data);
+        storeRef.putBytes(data).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                liveRes.postValue(Result.success());
+            }
+            else{
+                liveRes.postValue(Result.failure());
+            }
+        });
+        return liveRes;
     }
     @Override
-    public void getProfileImage() {
-        FirebaseReferences ref = this.ref;
+    public LiveData<Result> loadProfileImage() {
+        MutableLiveData<Result> liveRes = new MutableLiveData<>();
         StorageReference storeRef = ref.getProfileImage();
         storeRef.getBytes(20 * 1024 * 1024).addOnCompleteListener((task)->{
             if(task.isSuccessful()){
@@ -165,7 +189,12 @@ public class FirebaseDataLayer implements IDatalayer {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+                liveRes.postValue(Result.success());
+            }
+            else{
+                liveRes.postValue(Result.failure());
             }
         });
+        return liveRes;
     }
 }

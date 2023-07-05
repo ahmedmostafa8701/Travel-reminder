@@ -1,6 +1,11 @@
 package com.example.travelreminder.model;
 
-public class Trip {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Trip implements Parcelable {
    private String tripID;
    private String name;
    private String date;
@@ -19,6 +24,29 @@ public class Trip {
    }
    public Trip(){
    }
+
+   protected Trip(Parcel in) {
+      tripID = in.readString();
+      name = in.readString();
+      date = in.readString();
+      time = in.readString();
+      cityFrom = in.readString();
+      cityTo = in.readString();
+      status = in.readString();
+   }
+
+   public static final Creator<Trip> CREATOR = new Creator<Trip>() {
+      @Override
+      public Trip createFromParcel(Parcel in) {
+         return new Trip(in);
+      }
+
+      @Override
+      public Trip[] newArray(int size) {
+         return new Trip[size];
+      }
+   };
+
    public String getName() {
       return name;
    }
@@ -73,5 +101,21 @@ public class Trip {
 
    public void setTripID(String tripID) {
       this.tripID = tripID;
+   }
+
+   @Override
+   public int describeContents() {
+      return 0;
+   }
+
+   @Override
+   public void writeToParcel(@NonNull Parcel parcel, int i) {
+      parcel.writeString(tripID);
+      parcel.writeString(name);
+      parcel.writeString(date);
+      parcel.writeString(time);
+      parcel.writeString(cityFrom);
+      parcel.writeString(cityTo);
+      parcel.writeString(status);
    }
 }

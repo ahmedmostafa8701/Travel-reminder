@@ -6,107 +6,79 @@
     <data>
 
     </data>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.addtrip.AddTripActivity">
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            tools:context=".ui.add_trip.AddTripActivity">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/plane" />
 
             <AutoCompleteTextView
                 android:id="@+id/from_add_trip"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginTop="50dp"
                 android:ems="10"
                 android:hint="@string/source_city"
                 android:inputType="textPersonName"
-                android:minHeight="48dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+                android:minHeight="48dp" />
 
             <AutoCompleteTextView
                 android:id="@+id/to_add_trip"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 android:ems="10"
                 android:hint="@string/destination_city"
                 android:inputType="textPersonName"
-                android:minHeight="48dp"
-                app:layout_constraintEnd_toEndOf="@+id/from_add_trip"
-                app:layout_constraintStart_toStartOf="@+id/from_add_trip"
-                app:layout_constraintTop_toBottomOf="@+id/from_add_trip" />
+                android:minHeight="48dp" />
 
             <EditText
                 android:id="@+id/trip_name_add_trip"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 android:ems="10"
                 android:hint="@string/trip_name"
                 android:inputType="textPersonName"
-                android:minHeight="48dp"
-                app:layout_constraintEnd_toEndOf="@+id/to_add_trip"
-                app:layout_constraintStart_toStartOf="@+id/to_add_trip"
-                app:layout_constraintTop_toBottomOf="@+id/to_add_trip" />
+                android:minHeight="48dp" />
 
             <EditText
                 android:id="@+id/arrival_date_add_trip"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
+                android:cursorVisible="false"
                 android:ems="10"
+                android:focusable="false"
                 android:hint="@string/date"
                 android:inputType="none"
-                android:focusable="false"
-                android:cursorVisible="false"
-                android:minHeight="48dp"
-                app:layout_constraintEnd_toEndOf="@+id/trip_name_add_trip"
-                app:layout_constraintStart_toStartOf="@+id/trip_name_add_trip"
-                app:layout_constraintTop_toBottomOf="@+id/trip_name_add_trip" />
+                android:minHeight="48dp" />
 
             <EditText
                 android:id="@+id/arrival_time_add_trip"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
+                android:cursorVisible="false"
                 android:ems="10"
+                android:focusable="false"
                 android:hint="@string/time"
                 android:inputType="none"
-                android:focusable="false"
-                android:cursorVisible="false"
-                android:minHeight="48dp"
-                app:layout_constraintEnd_toEndOf="@+id/arrival_date_add_trip"
-                app:layout_constraintStart_toStartOf="@+id/arrival_date_add_trip"
-                app:layout_constraintTop_toBottomOf="@+id/arrival_date_add_trip" />
-
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@drawable/travel_image"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
+                android:minHeight="48dp" />
             <Button
                 android:id="@+id/add_trip_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#ff0000"
                 android:text="@string/add"
-                app:cornerRadius="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/arrival_time_add_trip" />
+                android:textColor="@color/purple_700"
+                app:cornerRadius="16dp" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        </LinearLayout>
 </layout>

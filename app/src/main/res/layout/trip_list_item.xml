@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="4dp"
-        app:cardCornerRadius="50dp"
+        app:cardCornerRadius="40dp"
+        android:padding="4dp"
         app:cardElevation="4dp"
-        app:cardUseCompatPadding="true"
-        android:padding="4dp">
+        android:elevation="4dp"
+        app:cardUseCompatPadding="true">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
                 android:id="@+id/trip_image"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:background="@drawable/road"
+                android:background="@drawable/plane"
                 android:contentDescription="@string/trip_details"
                 android:orientation="vertical">
 
@@ -32,57 +32,57 @@
                     android:layout_height="30dp"
                     android:layout_gravity="top|end"
                     android:layout_margin="15dp"
-                    android:background="@drawable/menu" />
+                    android:background="@drawable/menu"
+                    android:backgroundTint="@color/purple_700" />
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/hidden"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:id="@+id/hidden">
+                android:visibility="visible">
 
-                <TextView
-                    android:id="@+id/trip_status_text"
-                    style="@style/trip_label"
+                <ImageView
+                    android:id="@+id/imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/trip_status"
-                    app:layout_constraintBottom_toBottomOf="@+id/trip_name_text"
-                    app:layout_constraintEnd_toEndOf="@+id/trip_time_text"
-                    app:layout_constraintStart_toStartOf="@+id/trip_time_text"
-                    app:layout_constraintTop_toTopOf="@+id/trip_name_text" />
+                    app:layout_constraintBottom_toBottomOf="@+id/city_from_text"
+                    app:layout_constraintEnd_toEndOf="@+id/trip_name_text"
+                    app:layout_constraintStart_toStartOf="@+id/trip_name_text"
+                    app:layout_constraintTop_toTopOf="@+id/city_from_text"
+                    app:srcCompat="@drawable/arrow_to" />
 
                 <TextView
                     android:id="@+id/trip_time_text"
                     style="@style/trip_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/trip_time"
-                    app:layout_constraintBottom_toBottomOf="@+id/trip_date"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/trip_date"
-                    app:layout_constraintTop_toTopOf="@+id/trip_date" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/city_to_text"
+                    app:layout_constraintTop_toBottomOf="@+id/city_to_text" />
 
                 <TextView
                     android:id="@+id/trip_name_text"
                     style="@style/trip_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="@string/trip_name"
-                    app:layout_constraintBottom_toTopOf="@+id/city_from_text"
-                    app:layout_constraintEnd_toEndOf="@+id/trip_date"
-                    app:layout_constraintStart_toStartOf="@+id/trip_date"
-                    app:layout_constraintTop_toBottomOf="@+id/trip_date" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/city_from_text"
                     style="@style/trip_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="@string/city_from"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/trip_name_text"
-                    app:layout_constraintStart_toStartOf="@+id/trip_name_text"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/trip_name_text" />
 
                 <TextView
@@ -90,33 +90,34 @@
                     style="@style/trip_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/trip_date"
-                    app:layout_constraintBottom_toTopOf="@+id/trip_name_text"
-                    app:layout_constraintEnd_toStartOf="@+id/trip_time_text"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/city_from_text"
+                    app:layout_constraintTop_toBottomOf="@+id/city_from_text" />
 
                 <TextView
                     android:id="@+id/city_to_text"
                     style="@style/trip_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/city_to"
-                    app:layout_constraintBottom_toBottomOf="@+id/city_from_text"
-                    app:layout_constraintEnd_toEndOf="@+id/trip_status_text"
-                    app:layout_constraintStart_toStartOf="@+id/trip_status_text"
-                    app:layout_constraintTop_toTopOf="@+id/city_from_text" />
+                    app:layout_constraintBottom_toTopOf="@+id/trip_time_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toBottomOf="@+id/trip_name_text" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <Button
-                android:id="@+id/start_trip"
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/black"
-                android:backgroundTint="@color/black"
-                android:drawableTint="@color/black"
+                android:id="@+id/start_trip"
+                android:background="#ff0000"
+                android:textColor="@color/purple_700"
                 android:text="@string/start_trip_text" />
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

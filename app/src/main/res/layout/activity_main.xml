@@ -9,19 +9,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.home.HomePageActivity">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/Theme.TravelReminder.AppBarOverlay">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="40dp" />
-
-        </com.google.android.material.appbar.AppBarLayout>
+        tools:context=".ui.main.MainActivity">
 
         <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/drawerLayout"
@@ -32,21 +20,27 @@
                 android:layout_height="match_parent">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/imageView7"
+                    <com.google.android.material.appbar.AppBarLayout
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="@drawable/travel_image"
-                        android:contentDescription="@string/temp_image" />
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:theme="@style/Theme.TravelReminder.AppBarOverlay">
 
+                        <androidx.appcompat.widget.Toolbar
+                            android:id="@+id/toolbar"
+                            android:layout_width="match_parent"
+                            android:background="#ff0000"
+                            android:layout_height="40dp" />
+
+                    </com.google.android.material.appbar.AppBarLayout>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:listitem="@layout/trip_item" />
+                        android:layout_marginTop="10dp"
+                        tools:listitem="@layout/trip_list_item" />
                 </LinearLayout>
             </ScrollView>
             <com.google.android.material.navigation.NavigationView
@@ -63,11 +57,12 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint ="#ff0000"
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="@dimen/fab_margin"
             android:layout_marginBottom="16dp"
             app:srcCompat="@android:drawable/ic_input_add"
-            android:contentDescription="@string/add_note" />
+            android:contentDescription="@string/add_trip" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

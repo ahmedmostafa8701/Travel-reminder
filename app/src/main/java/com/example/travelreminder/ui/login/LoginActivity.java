@@ -1,18 +1,18 @@
 package com.example.travelreminder.ui.login;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-
 import com.example.travelreminder.R;
 import com.example.travelreminder.Validation;
 import com.example.travelreminder.databinding.ActivityLoginUserBinding;
-import com.example.travelreminder.ui.home.HomePageActivity;
+import com.example.travelreminder.ui.main.MainActivity;
 import com.example.travelreminder.ui.register.SignUpActivity;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -21,8 +21,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     ActivityLoginUserBinding binding;
     LoginViewModel viewModel;
     Validation validation;
-    private String email;
-    private String password;
+    String email;
+    String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void getViewModel() {
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        viewModel.setContext(this);
         viewModel.getFireUser().observe(this, this);
     }
 
@@ -46,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onChanged(FirebaseUser firebaseUser) {
         if(firebaseUser != null){
-            startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
         }
     }
 

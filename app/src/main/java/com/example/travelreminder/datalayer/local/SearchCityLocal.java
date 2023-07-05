@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.example.travelreminder.datalayer.ISearchCity;
 import com.example.travelreminder.model.CityList;
-import com.example.travelreminder.ui.addtrip.OnRecieve;
+import com.example.travelreminder.ui.add_trip.OnRecieve;
 
 import java.io.IOException;
 import java.util.ArrayList;

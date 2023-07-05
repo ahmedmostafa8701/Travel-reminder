@@ -1,12 +1,5 @@
 package com.example.travelreminder.ui.register;
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,11 +8,20 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.travelreminder.R;
 import com.example.travelreminder.Validation;
 import com.example.travelreminder.databinding.ActivitySignUpBinding;
 import com.example.travelreminder.model.User;
-import com.example.travelreminder.ui.home.HomePageActivity;
+import com.example.travelreminder.ui.main.MainActivity;
 import com.example.travelreminder.ui.login.LoginActivity;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -46,6 +48,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private void getViewModel() {
         viewModel = new ViewModelProvider(this).get(SingUpViewModel.class);
+        viewModel.setContext(this);
         viewModel.getFireUser().observe(this, this);
     }
 
@@ -67,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 user.setImage(image);
             }
             viewModel.addUser(user);
-            startActivity(new Intent(SignUpActivity.this, HomePageActivity.class));
+            startActivity(new Intent(SignUpActivity.this, MainActivity.class));
         }
     }
 
@@ -82,7 +85,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             signUp(email, password);
         }
         else if(v.getId() == binding.alreadyRegisterButton.getId()){
-            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
             finish();
         }
         else if(v.getId() == binding.uploadImageRegister.getId()){

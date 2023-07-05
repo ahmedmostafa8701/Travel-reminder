@@ -1,5 +1,7 @@
 package com.example.travelreminder.ui.login;
 
+import android.content.Context;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -9,6 +11,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginViewModel extends ViewModel {
     Auth auth;
+    LoginRepo repo;
     private MutableLiveData<FirebaseUser> _fireUser = new MutableLiveData<>();
     public LoginViewModel() {
         auth = new Auth();
@@ -16,7 +19,9 @@ public class LoginViewModel extends ViewModel {
             _fireUser.setValue(FirebaseAuth.getInstance().getCurrentUser());
         }
     }
-
+    public void setContext(Context context){
+        repo = new LoginRepo(context);
+    }
     public MutableLiveData<FirebaseUser> getFireUser() {
         return _fireUser;
     }
