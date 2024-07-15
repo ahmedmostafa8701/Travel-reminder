@@ -13,6 +13,7 @@ import com.example.travelreminder.model.Trip;
 import com.example.travelreminder.model.User;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SQLiteDataLayer implements ILocalDataLayer {
@@ -47,7 +48,7 @@ public class SQLiteDataLayer implements ILocalDataLayer {
               new String []{DatabaseHelper.ID, DatabaseHelper.NAME, DatabaseHelper.CITY_TO, DatabaseHelper.CITY_FROM,
                       DatabaseHelper.DATE, DatabaseHelper.TIME, DatabaseHelper.STATUS},
               null, null, null, null, null);
-      List<Trip> trips = user.getTrips();
+      List<Trip> trips = new ArrayList<>();
       if(cursor != null && cursor.moveToFirst()){
          do{
             Trip trip = new Trip();

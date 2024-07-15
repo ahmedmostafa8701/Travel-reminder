@@ -6,18 +6,15 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.travelreminder.Auth.Auth;
 import com.example.travelreminder.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SingUpViewModel extends ViewModel {
-    Auth auth;
     private MutableLiveData<FirebaseUser> _fireUser = new MutableLiveData<>();
     private LiveData<FirebaseUser> fireUser = _fireUser;
     SignUpRepo repo;
     public SingUpViewModel() {
-        auth = new Auth();
         if(FirebaseAuth.getInstance().getCurrentUser() != null){
             _fireUser.setValue(FirebaseAuth.getInstance().getCurrentUser());
         }

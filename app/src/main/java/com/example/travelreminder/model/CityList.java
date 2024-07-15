@@ -34,11 +34,10 @@ public class CityList {
       Gson gson = new Gson();
       Type type = new TypeToken<TreeMap<String, List<String>>>(){}.getType();
       TreeMap<String, List<String>> treeMap =  gson.fromJson(jsonString.toString(), type);
-      List<String> result = new ArrayList<>();
-      for(List<String> cities : treeMap.values()){
-         result.addAll(cities);
+      cities = new ArrayList<>();
+      for(List<String> cities1 : treeMap.values()){
+         cities.addAll(cities1);
       }
-      cities = result;
-      return result;
+      return cities;
    }
 }

@@ -18,7 +18,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String CITY_FROM = "cityFrom";
     public static final String CITY_TO = "cityTo";
     public static final String STATUS = "status";
-    public static final String OPERATION = "operation";
     public static final String USERNAME = "username";
     public static final String EMAIL = "email";
     public static final String PHONE = "phone";

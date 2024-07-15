@@ -6,6 +6,11 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.travelreminder.model.Trip;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.Random;
+
 public class AddTripViewModel extends ViewModel {
     AddTripRepo repo;
     Context context;
@@ -19,6 +24,12 @@ public class AddTripViewModel extends ViewModel {
     }
 
     public void addTrip(Trip trip) {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        String currentDateTimeString = dateFormat.format(calendar.getTime());
+        Random random = new Random();
+        String tripId = currentDateTimeString + " " + random.nextInt(1000);
+        trip.setTripID(tripId);
         repo.addTrip(trip);
     }
 }

@@ -6,12 +6,15 @@
     <data>
 
     </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.add_trip.AddTripActivity">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
-            tools:context=".ui.add_trip.AddTripActivity">
+            android:gravity="center_horizontal">
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
@@ -81,4 +84,5 @@
                 app:cornerRadius="16dp" />
 
         </LinearLayout>
+    </ScrollView>
 </layout>

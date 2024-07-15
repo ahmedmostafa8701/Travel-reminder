@@ -33,7 +33,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void getViewModel() {
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-        viewModel.setContext(this);
         viewModel.getFireUser().observe(this, this);
     }
 

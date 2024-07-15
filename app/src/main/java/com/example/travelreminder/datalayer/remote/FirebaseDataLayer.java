@@ -36,11 +36,13 @@ public class FirebaseDataLayer implements IRemoteDataLayer {
                     user.setUserName(result.child("userName").getValue(String.class));
                     user.setEmail(result.child("email").getValue(String.class));
                     user.setPhone(result.child("phone").getValue(String.class));
+                    for (DataSnapshot trip : result.child("trips").getChildren()) {
+                        user.addTrip(trip.getValue(Trip.class));
+                    }
                 }catch (Exception e){
                     e.printStackTrace();
                 }
                 runTimeData.setUser(user);
-                loadTrips();
                 liveRes.postValue(Result.success());
             }
             else{

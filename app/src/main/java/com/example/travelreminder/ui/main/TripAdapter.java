@@ -2,24 +2,22 @@ package com.example.travelreminder.ui.main;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelreminder.R;
+import com.example.travelreminder.databinding.TripListItemBinding;
 import com.example.travelreminder.model.Trip;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
 
@@ -37,29 +35,28 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.trip_list_item, parent, false);
-        return new ViewHolder(view);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        TripListItemBinding binding = TripListItemBinding.inflate(inflater, parent, false);
+        return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Trip trip = trips.get(position);
-        holder.tripDate.setText(trip.getDate());
-        holder.tripTime.setText(trip.getTime());
-        holder.tripFrom.setText(trip.getCityFrom());
-        holder.tripTo.setText(trip.getCityTo());
-        holder.tripName.setText(trip.getName());
-        holder.tripImage.setOnClickListener((view)->{
-            if(holder.hidden.getVisibility() == View.GONE){
-                holder.hidden.setVisibility(View.VISIBLE);
+        holder.binding.setTrip(trip);
+        holder.binding.imageView.setOnClickListener((view)->{
+            if(holder.binding.hidden.getVisibility() == View.GONE){
+                holder.binding.hidden.setVisibility(View.VISIBLE);
             }
-            else if(holder.hidden.getVisibility() == View.VISIBLE){
-                holder.hidden.setVisibility(View.GONE);
+            else if(holder.binding.hidden.getVisibility() == View.VISIBLE){
+                holder.binding.hidden.setVisibility(View.GONE);
             }
         });
-        holder.tripMenu.setOnClickListener((view) -> menuItem.onItemMenuClick(position));
-        holder.startTrip.setOnClickListener((view) -> {
-            startTrip.start(trips.get(position));
+        holder.binding.tripMenu.setOnClickListener((view) -> holder.showMenu(position));
+        holder.binding.startTrip.setOnClickListener((view) -> startTrip.start(trips.get(position)));
+        holder.itemView.setOnLongClickListener((view) -> {
+            holder.showMenu(position);
+            return true;
         });
     }
 
@@ -73,30 +70,21 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView tripName;
-        TextView tripDate;
-        TextView tripTime;
-        TextView tripFrom;
-        TextView tripTo;
-        LinearLayout tripImage;
-        ImageView tripMenu;
-        ImageButton delete;
-        ImageButton edit;
-        Button startTrip;
-        ConstraintLayout hidden;
-        public ViewHolder(@NonNull View view) {
-            super(view);
-            tripDate = view.findViewById(R.id.trip_date);
-            tripTime = view.findViewById(R.id.trip_time_text);
-            tripFrom = view.findViewById(R.id.city_from_text);
-            tripName = view.findViewById(R.id.trip_name_text);
-            tripTo = view.findViewById(R.id.city_to_text);
-            tripImage = view.findViewById(R.id.trip_image);
-            tripMenu = view.findViewById(R.id.trip_menu);
-            delete = view.findViewById(R.id.delete_trip_menu);
-            edit = view.findViewById(R.id.edit_trip_menu);
-            startTrip = view.findViewById(R.id.start_trip);
-            hidden = view.findViewById(R.id.hidden);
+        TripListItemBinding binding;
+
+        public ViewHolder(@NonNull TripListItemBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+        private void showMenu(int position) {
+            PopupMenu popupMenu = new PopupMenu(context,
+                    Objects.requireNonNull(binding.tripMenu));
+            popupMenu.inflate(R.menu.trip_item_menu);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                popupMenu.setForceShowIcon(true);
+            }
+            popupMenu.setOnMenuItemClickListener(item -> menuItem.onItemMenuClick(item, position));
+            popupMenu.show();
         }
     }
 }

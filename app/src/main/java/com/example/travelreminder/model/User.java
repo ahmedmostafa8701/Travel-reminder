@@ -1,6 +1,9 @@
 package com.example.travelreminder.model;
 
 import android.graphics.Bitmap;
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,5 +91,9 @@ public class User{
       if (trip != null) {
          trips.remove(trip);
       }
+   }
+   @BindingAdapter("android:imageBitmap")
+   public static void loadImage(ImageView imageView, Bitmap bitmap){
+      imageView.setImageBitmap(bitmap);
    }
 }

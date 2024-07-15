@@ -2,25 +2,24 @@ package com.example.travelreminder.ui.main;
 
 import android.content.Context;
 
-import com.example.travelreminder.Auth.Auth;
+import androidx.core.app.NotificationManagerCompat;
+
 import com.example.travelreminder.datalayer.local.ILocalDataLayer;
-import com.example.travelreminder.datalayer.local.SQLiteDataLayer;
-import com.example.travelreminder.datalayer.remote.FirebaseDataLayer;
+import com.example.travelreminder.datalayer.local.LocalDataLayer;
 import com.example.travelreminder.datalayer.remote.IRemoteDataLayer;
+import com.example.travelreminder.datalayer.remote.RemoteDataLayer;
 import com.example.travelreminder.model.RunTimeData;
 import com.example.travelreminder.model.Trip;
 import com.example.travelreminder.workers.ScheduleWork;
-import com.example.travelreminder.workers.TripWorker;
+import com.example.travelreminder.workers.TripRemoteWorker;
 
 public class MainRepo {
-    Auth auth;
     IRemoteDataLayer remoteDataLayer;
     ILocalDataLayer localDataLayer;
     Context context;
     public MainRepo(Context context) {
-        this.remoteDataLayer = new FirebaseDataLayer();
-        this.localDataLayer = new SQLiteDataLayer(context);
-        auth = new Auth();
+        this.remoteDataLayer = new RemoteDataLayer();
+        this.localDataLayer = new LocalDataLayer(context);
         this.context = context;
     }
 
@@ -33,10 +32,13 @@ public class MainRepo {
     }
 
     public void removeTrip(String tripID) {
-        localDataLayer.removeTrip(tripID);
         RunTimeData.instance.removeTrip(tripID);
+        localDataLayer.removeTrip(tripID);
         Trip trip = new Trip();
         trip.setTripID(tripID);
-        ScheduleWork.tripRemoteWork(context, TripWorker.WORK_STATUS_REMOVE, trip);
+        ScheduleWork.tripRemoteWork(context, TripRemoteWorker.WORK_STATUS_REMOVE, trip.getTripID(), trip);
+        ScheduleWork.cancelReminder(context, tripID);
+        NotificationManagerCompat.from(context).cancel(trip.getTripID().hashCode());
     }
+
 }

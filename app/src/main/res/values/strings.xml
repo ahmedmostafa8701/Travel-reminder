@@ -1,4 +1,5 @@
 <resources>
+    <string name="notification_channel"> trip</string>
     <string name="app_name">Travel reminder</string>
     <string name="sign_up_layout">sign up layout</string>
     <string name="profile_img">profile image</string>
@@ -44,7 +45,7 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="trip_details">Trip Details</string>
-    <string name="start_trip_text">start</string>
+    <string name="start_trip_text">Start</string>
     <string name="sign_out">Sign Out</string>
     <string name="source_city">Source city</string>
     <string name="add">add</string>
@@ -65,4 +66,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="edit">Edit</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

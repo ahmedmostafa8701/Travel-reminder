@@ -4,18 +4,37 @@
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
     <application
         android:name=".application.App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/travel_bag"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelReminder"
         tools:targetApi="31">
+
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_API_KEY" />
+
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="false"
@@ -28,7 +47,6 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.TravelReminder.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +61,6 @@
         <activity
             android:name=".ui.add_trip.AddTripActivity"
             android:exported="false"
-            android:label="@string/app_name"
             android:theme="@style/Theme.TravelReminder.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
@@ -52,7 +69,6 @@
         <activity
             android:name=".ui.login.ForgetPasswordActivity"
             android:exported="false"
-            android:label="@string/app_name"
             android:theme="@style/Theme.TravelReminder.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
@@ -61,7 +77,6 @@
         <activity
             android:name=".ui.add_trip.AddNoteActivity"
             android:exported="false"
-            android:label="@string/app_name"
             android:theme="@style/Theme.TravelReminder.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
@@ -70,12 +85,14 @@
         <activity
             android:name=".ui.register.SignUpActivity"
             android:exported="false"
-            android:label="@string/app_name"
             android:theme="@style/Theme.TravelReminder.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <service android:name=".services.CancelTripService"/>
+        <service android:name=".services.StartTripService"/>
     </application>
 
 </manifest>

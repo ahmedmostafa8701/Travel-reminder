@@ -5,8 +5,8 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
 
+import com.example.travelreminder.R;
 public class App extends Application {
-    public  static final String CHANNEL_1_ID = "channel1";
     @Override
     public void onCreate() {
         super.onCreate();
@@ -17,10 +17,11 @@ public class App extends Application {
     private void createNotification() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel channel = new NotificationChannel(
-                    CHANNEL_1_ID,
+                    getString(R.string.notification_channel),
                     "trip",
                     NotificationManager.IMPORTANCE_HIGH);
             channel.setDescription("This is trip channel");
+            channel.setImportance(NotificationManager.IMPORTANCE_HIGH);
             NotificationManager manager = (NotificationManager) getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
         }

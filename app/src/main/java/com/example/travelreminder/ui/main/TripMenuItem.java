@@ -1,5 +1,7 @@
 package com.example.travelreminder.ui.main;
 
+import android.view.MenuItem;
+
 public interface TripMenuItem {
- public void onItemMenuClick(int position);
+ public boolean onItemMenuClick(MenuItem item, int position);
 }

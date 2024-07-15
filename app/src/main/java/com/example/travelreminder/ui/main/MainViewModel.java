@@ -6,20 +6,18 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.travelreminder.Auth.Auth;
 import com.example.travelreminder.model.RunTimeData;
 import com.example.travelreminder.model.User;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainViewModel extends ViewModel {
     MutableLiveData<User> _user;
     LiveData<User> user;
     MainRepo mainRepo;
-    Auth auth;
 
     public MainViewModel() {
         this._user = new MutableLiveData<>();
         this.user = _user;
-        auth = new Auth();
     }
     public void setContext(Context context) {
         mainRepo = new MainRepo(context);
@@ -33,11 +31,11 @@ public class MainViewModel extends ViewModel {
     }
 
     public boolean isSignIn(){
-        return auth.isSignIn();
+        return FirebaseAuth.getInstance().getCurrentUser() != null;
     }
 
     public void signOut(){
-        auth.signOut();
+        FirebaseAuth.getInstance().signOut();
         mainRepo.removeUserLocal();
     }
 }
